@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>SkyLand</RootNamespace>
+    <AssemblyName>SKY LAND</AssemblyName>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+    <AssemblyTitle>SKY LAND</AssemblyTitle>
+    <Product>SKY LAND</Product>
+    <Description>Sistema de Controle e Operações</Description>
+    <Company>SKY LAND</Company>
+    <Copyright>SKY LAND</Copyright>
+    <SatelliteResourceLanguages>pt-BR</SatelliteResourceLanguages>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+    <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\emblem.png" />
+    <Resource Include="Assets\potassium.png" />
+    <Resource Include="Assets\madium.png" />
+    <Resource Include="Assets\real.png" />
+    <Resource Include="Assets\anydesk.png" />
+    <Resource Include="Assets\status_icon.png" />
+    <Resource Include="Assets\fishstrap.png" />
+    <Resource Include="Assets\ram.png" />
+    <Resource Include="Assets\multibloxy.png" />
+  </ItemGroup>
+
+</Project>

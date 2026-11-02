@@ -1,0 +1,70 @@
+<UserControl x:Class="SkyLand.Pages.MadiumPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ops="clr-namespace:SkyLand"
+             xmlns:controls="clr-namespace:SkyLand.Controls">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,24,32,32">
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,28">
+                    <Image Height="100"
+                           Source="pack://application:,,,/Assets/madium.png"
+                           Stretch="Uniform" VerticalAlignment="Center"
+                           RenderOptions.BitmapScalingMode="HighQuality">
+                        <Image.Effect>
+                            <DropShadowEffect Color="#7C3AED" BlurRadius="28" ShadowDepth="6"
+                                              Direction="-90" Opacity="0.5" />
+                        </Image.Effect>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="24,0,0,0">
+                        <TextBlock Text="Madium" Style="{StaticResource T.PageTitle}" />
+                        <TextBlock Style="{StaticResource T.PageSubtitle}"
+                                   Text="Baixe ou atualize o Madium, repare uma instalação problemática (com sua confirmação) e instale as dependências oficiais."
+                                   MaxWidth="700" HorizontalAlignment="Left"
+                                   Margin="0,8,0,0" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Baixar / atualizar -->
+                <controls:DownloadCard DataContext="{x:Static ops:OpsStore.MadiumInstall}">
+                    <controls:DownloadCard.Actions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource BtnPrimary}"
+                                    Content="Baixar / atualizar Madium" Click="OnDownloadClick"
+                                    Margin="0,0,12,0" />
+                        </StackPanel>
+                    </controls:DownloadCard.Actions>
+                </controls:DownloadCard>
+
+                <!-- Arrumar problemas -->
+                <controls:DownloadCard DataContext="{x:Static ops:OpsStore.MadiumRepair}"
+                                       Margin="0,16,0,0">
+                    <controls:DownloadCard.Actions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource BtnDanger}"
+                                    Content="Arrumar problemas do Madium" Click="OnRepairClick" />
+                        </StackPanel>
+                    </controls:DownloadCard.Actions>
+                </controls:DownloadCard>
+
+                <!-- Dependências -->
+                <controls:DownloadCard DataContext="{x:Static ops:OpsStore.MadiumDeps}"
+                                       Margin="0,16,0,0">
+                    <controls:DownloadCard.Actions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource BtnPrimary}"
+                                    Content="Verificar e instalar tudo"
+                                    Click="OnDependenciesClick"
+                                    Margin="0,0,12,0" />
+                            <Button Style="{StaticResource BtnGhost}"
+                                    Content="Consultar status na WEAO"
+                                    Click="OnStatusClick" />
+                        </StackPanel>
+                    </controls:DownloadCard.Actions>
+                </controls:DownloadCard>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

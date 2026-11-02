@@ -1,0 +1,147 @@
+<UserControl x:Class="SkyLand.Pages.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,24,32,32">
+
+                <TextBlock Text="Configurações" Style="{StaticResource T.PageTitle}" Margin="0,0,0,0" />
+                <TextBlock Style="{StaticResource T.PageSubtitle}"
+                           Text="Configure a pasta de downloads e gerencie atualizações do SKY LAND."
+                           Margin="0,8,0,28" />
+
+                <!-- ===== DOWNLOADS ===== -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="Pasta padrão de downloads" Style="{StaticResource T.CardTitle}" />
+                        <TextBlock Style="{StaticResource T.CardSubtitle}"
+                                   Text="Os arquivos salvam aqui: Potassium.zip, RealSetup.exe e AnyDesk.exe."
+                                   Margin="0,3,0,12" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="FolderBox" Style="{StaticResource InputBox}"
+                                     IsReadOnly="True" />
+                            <Button x:Name="BtnFolder" Grid.Column="1" Style="{StaticResource BtnGhost}"
+                                    Content="Procurar…" Click="OnFolderClick" Margin="12,0,0,0" />
+                            <Button x:Name="BtnOpenFolder" Grid.Column="2" Style="{StaticResource BtnGhost}"
+                                    Content="Abrir" Click="OnOpenFolderClick" Margin="10,0,0,0" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- ===== ATUALIZAÇÕES DO SKY LAND ===== -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Verificar atualizações automaticamente" Style="{StaticResource T.CardTitle}" />
+                                <TextBlock Style="{StaticResource T.CardSubtitle}"
+                                           Text="Ao abrir o SKY LAND, consulta o repositório oficial por uma versão mais recente."
+                                           Margin="0,3,0,0" />
+                            </StackPanel>
+                            <CheckBox x:Name="SwAutoUpdate" Grid.Column="1" Style="{StaticResource SwitchCheck}"
+                                      Checked="OnAutoUpdateToggle" Unchecked="OnAutoUpdateToggle"
+                                      VerticalAlignment="Center" />
+                        </Grid>
+
+                        <Border Height="1" Background="{DynamicResource Brush.Stroke.Subtle}" Margin="0,16,0,16" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="Versão atual"
+
+                                           Style="{StaticResource T.CardTitle}" />
+                                <TextBlock x:Name="VersionText" Style="{StaticResource T.CardSubtitle}"
+                                           Margin="0,3,0,0" />
+                            </StackPanel>
+                            <Button x:Name="BtnCheckUpdates" Grid.Column="1" Style="{StaticResource BtnPrimary}"
+                                    Content="Verificar agora" Click="OnCheckUpdatesClick" VerticalAlignment="Center" />
+                        </Grid>
+
+                        <!-- resultado da checagem -->
+                        <Border x:Name="UpdateBanner" CornerRadius="12"
+                                Background="{DynamicResource Brush.Success.Soft}"
+                                Visibility="Collapsed" Margin="0,16,0,0" Padding="16,12">
+                            <TextBlock x:Name="UpdateBannerText" TextWrapping="Wrap" FontSize="12"
+                                       Foreground="{DynamicResource Brush.Success.Text}" />
+                        </Border>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,14,0,0"
+                                    Visibility="Collapsed">
+                            <Button x:Name="BtnDownloadUpdate" Style="{StaticResource BtnPrimary}"
+                                    Content="Baixar atualização"
+                                    Click="OnDownloadUpdateClick"
+                                    Margin="0,0,10,0" />
+                            <Button x:Name="BtnRunUpdate" Style="{StaticResource BtnGhost}"
+                                    Content="Executar a versão baixada"
+                                    Click="OnRunUpdateClick" />
+                        </StackPanel>
+
+                        <!-- Histórico -->
+                        <Border Height="1" Background="{DynamicResource Brush.Stroke.Subtle}" Margin="0,20,0,12" />
+                        <TextBlock Text="HISTÓRICO DE VERSÕES (RELEASES DO REPOSITÓRIO)" Style="{StaticResource T.SectionHead}" />
+                        <ItemsControl x:Name="HistoryList">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Ellipse Width="6" Height="6" Fill="{DynamicResource Brush.Accent.Bright}"
+                                                 VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="1" Margin="10,0,10,0" FontSize="11.5"
+                                                   Foreground="{DynamicResource Brush.Text.Secondary}"
+                                                   Text="{Binding Text}" TextTrimming="CharacterEllipsis"
+                                                   ToolTip="{Binding Text}" />
+                                        <TextBlock Grid.Column="2" FontSize="10.5"
+                                                   Foreground="{DynamicResource Brush.Text.Dim}"
+                                                   Text="{Binding DateText}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBlock x:Name="HistoryEmpty" Style="{StaticResource T.Small}"
+                                   Text="Sem histórico carregado — clique em 'Verificar agora'."
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+
+                <!-- ===== MANUTENÇÃO ===== -->
+                <Border Style="{StaticResource Card}">
+                    <StackPanel>
+                        <TextBlock Text="Manutenção" Style="{StaticResource T.CardTitle}" />
+                        <TextBlock Style="{StaticResource T.CardSubtitle}"
+                                   Text="Limpa atualizações baixadas e instaladores temporários usados por este aplicativo."
+                                   Margin="0,3,0,12" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="BtnClearTemp" Style="{StaticResource BtnGhost}"
+                                    Content="Limpar arquivos temporários"
+                                    Click="OnClearTempClick" Margin="0,0,10,0" />
+                            <Button x:Name="BtnGitHub" Style="{StaticResource BtnGhost}"
+                                    Content="Abrir GitHub oficial"
+                                    Click="OnGitHubClick" Margin="0,0,10,0" />
+                            <Button x:Name="BtnClearActivity" Style="{StaticResource BtnGhost}"
+                                    Content="Limpar registro de atividades"
+                                    Click="OnClearActivityClick" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
