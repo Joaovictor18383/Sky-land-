@@ -16,7 +16,7 @@
                         VerticalAlignment="Center" HorizontalAlignment="Center"
                         Visibility="{Binding ImagePath, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource ArtVis}}">
                     <Border.Effect>
-                        <DropShadowEffect Color="#8B5CF6" BlurRadius="20" ShadowDepth="5"
+                        <DropShadowEffect Color="#8B17C0" BlurRadius="20" ShadowDepth="5"
                                           Direction="-90" Opacity="0.35" />
                     </Border.Effect>
                     <Image Source="{Binding ImagePath, RelativeSource={RelativeSource AncestorType=UserControl}}"

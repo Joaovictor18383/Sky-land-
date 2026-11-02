@@ -38,12 +38,12 @@
 
     <SolidColorBrush x:Key="Brush.Accent" Color="#8B17C0" />
     <SolidColorBrush x:Key="Brush.Accent.Bright" Color="#D8A7FF" />
-    <SolidColorBrush x:Key="Brush.Accent2" Color="#A955F7" />
-    <SolidColorBrush x:Key="Brush.Accent.Soft" Color="#2D1F5E" />
+    <SolidColorBrush x:Key="Brush.Accent2" Color="#A64ACF" />
+    <SolidColorBrush x:Key="Brush.Accent.Soft" Color="#351044" />
 
     <LinearGradientBrush x:Key="Brush.Accent.Gradient" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#8B17C0" Offset="0" />
-        <GradientStop Color="#A955F7" Offset="1" />
+        <GradientStop Color="#A64ACF" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Brush.Hero" StartPoint="0,0" EndPoint="1,0">

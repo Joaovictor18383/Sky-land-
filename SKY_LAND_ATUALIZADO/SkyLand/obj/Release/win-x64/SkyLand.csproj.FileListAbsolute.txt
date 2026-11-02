@@ -1,0 +1,41 @@
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\bin\Release\win-x64\SKY LAND.exe
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\bin\Release\win-x64\SKY LAND.deps.json
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\bin\Release\win-x64\SKY LAND.runtimeconfig.json
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\bin\Release\win-x64\SKY LAND.dll
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Controls\DownloadCard.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Controls\QuickTile.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\MainWindow.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\AboutPage.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\SettingsPage.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Themes\Theme.Black.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Themes\Theme.DeepBlue.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\App.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Controls\DownloadCard.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Controls\QuickTile.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\MainWindow.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\AboutPage.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\DashboardPage.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\MadiumPage.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\OtherPage.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\PotassiumPage.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\RealPage.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\SettingsPage.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\App.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\GeneratedInternalTypeHelper.g.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\SKY LAND_MarkupCompile.cache
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\SKY LAND_MarkupCompile.lref
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\DashboardPage.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\MadiumPage.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\OtherPage.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\PotassiumPage.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Pages\RealPage.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\Styles\Shared.baml
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\SKY LAND.g.resources
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\SkyLand.GeneratedMSBuildEditorConfig.editorconfig
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\SkyLand.AssemblyInfoInputs.cache
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\SkyLand.AssemblyInfo.cs
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\SkyLand.csproj.CoreCompileInputs.cache
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\SKY LAND.dll
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\refint\SKY LAND.dll
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\SkyLand.genruntimeconfig.cache
+D:\a\Sky-land-\Sky-land-\SKY_LAND_ATUALIZADO\SkyLand\obj\Release\win-x64\ref\SKY LAND.dll

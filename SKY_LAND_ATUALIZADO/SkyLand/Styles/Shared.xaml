@@ -91,7 +91,7 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource Brush.Stroke.Hover}" />
                 <Setter Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect Color="#4A8B5CF6" BlurRadius="40" ShadowDepth="10" Direction="-90" Opacity="0.5" />
+                        <DropShadowEffect Color="#4A8B17C0" BlurRadius="40" ShadowDepth="10" Direction="-90" Opacity="0.5" />
                     </Setter.Value>
                 </Setter>
             </Trigger>
@@ -121,7 +121,7 @@
                             <Setter TargetName="glow" Property="Opacity" Value="1" />
                             <Setter TargetName="bg" Property="Effect">
                                 <Setter.Value>
-                                    <DropShadowEffect Color="#208B5CF6" BlurRadius="32" ShadowDepth="8" Direction="-90" Opacity="0.25" />
+                                    <DropShadowEffect Color="#208B17C0" BlurRadius="32" ShadowDepth="8" Direction="-90" Opacity="0.25" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -370,9 +370,9 @@
 
     <!-- ===== Progresso: gradiente indeterminado ===== -->
     <LinearGradientBrush x:Key="Brush.Indeterminate.Gradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#7C3AED" Offset="0" />
-        <GradientStop Color="#D946EF" Offset="0.45" />
-        <GradientStop Color="#7C3AED" Offset="0.9" />
+        <GradientStop Color="#8B17C0" Offset="0" />
+        <GradientStop Color="#C45BE0" Offset="0.45" />
+        <GradientStop Color="#8B17C0" Offset="0.9" />
     </LinearGradientBrush>
 
     <Style x:Key="SlimProgress" TargetType="ProgressBar">
@@ -509,7 +509,7 @@
                             <Setter TargetName="bg" Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
                             <Setter TargetName="bg" Property="Effect">
                                 <Setter.Value>
-                                    <DropShadowEffect Color="#208B5CF6" BlurRadius="18" ShadowDepth="2" Opacity="0.5" />
+                                    <DropShadowEffect Color="#208B17C0" BlurRadius="18" ShadowDepth="2" Opacity="0.5" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

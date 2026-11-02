@@ -13,7 +13,7 @@
                            Stretch="Uniform" VerticalAlignment="Center"
                            RenderOptions.BitmapScalingMode="HighQuality">
                         <Image.Effect>
-                            <DropShadowEffect Color="#7C3AED" BlurRadius="28" ShadowDepth="6"
+                            <DropShadowEffect Color="#8B17C0" BlurRadius="28" ShadowDepth="6"
                                               Direction="-90" Opacity="0.5" />
                         </Image.Effect>
                     </Image>

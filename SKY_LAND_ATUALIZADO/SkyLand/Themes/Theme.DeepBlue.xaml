@@ -2,7 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- ================ TEMA: AZUL PROFUNDO (padrão) ================ -->
+    <!-- ================ TEMA: ROXO ESCURO (padrão) ================ -->
 
     <LinearGradientBrush x:Key="Brush.Window.BackgroundGradient" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#0A0A0A" Offset="0" />
@@ -36,19 +36,19 @@
 
     <!-- ================ ACENTOS ================ -->
 
-    <SolidColorBrush x:Key="Brush.Accent" Color="#8B5CF6" />
-    <SolidColorBrush x:Key="Brush.Accent.Bright" Color="#A78BFA" />
-    <SolidColorBrush x:Key="Brush.Accent2" Color="#A855F7" />
-    <SolidColorBrush x:Key="Brush.Accent.Soft" Color="#4C1D95" />
+    <SolidColorBrush x:Key="Brush.Accent" Color="#8B17C0" />
+    <SolidColorBrush x:Key="Brush.Accent.Bright" Color="#D6A0F0" />
+    <SolidColorBrush x:Key="Brush.Accent2" Color="#A64ACF" />
+    <SolidColorBrush x:Key="Brush.Accent.Soft" Color="#351044" />
 
     <LinearGradientBrush x:Key="Brush.Accent.Gradient" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#8B5CF6" Offset="0" />
-        <GradientStop Color="#A855F7" Offset="1" />
+        <GradientStop Color="#8B17C0" Offset="0" />
+        <GradientStop Color="#A64ACF" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Brush.Hero" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#A78BFA" Offset="0" />
-        <GradientStop Color="#C4B5FD" Offset="1" />
+        <GradientStop Color="#D6A0F0" Offset="0" />
+        <GradientStop Color="#E9D5F5" Offset="1" />
     </LinearGradientBrush>
 
     <!-- ================ ESTADOS ================ -->
