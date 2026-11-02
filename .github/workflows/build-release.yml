@@ -1,0 +1,98 @@
+name: Build SKY LAND (Windows x64)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "SKY_LAND_ATUALIZADO/SkyLand/**"
+      - "scripts/apply_branding.py"
+      - ".github/workflows/build-release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install image tooling
+        run: python -m pip install --disable-pip-version-check Pillow
+
+      - name: Apply purple branding and generate multi-resolution icon
+        run: python scripts/apply_branding.py
+
+      - name: Set up .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Publish SKY LAND for Windows x64
+        shell: pwsh
+        run: >-
+          dotnet publish "SKY_LAND_ATUALIZADO/SkyLand/SkyLand.csproj"
+          --configuration Release
+          --runtime win-x64
+          --no-self-contained
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:DebugType=None
+          -p:DebugSymbols=false
+          -o "${{ runner.temp }}\skyland-publish"
+
+      - name: Copy executable and package complete source
+        shell: pwsh
+        run: |
+          $exe = Join-Path $env:RUNNER_TEMP "skyland-publish\SKY LAND.exe"
+          if (!(Test-Path $exe)) { throw "O executável publicado não foi encontrado: $exe" }
+          Copy-Item $exe "SKY_LAND_ATUALIZADO/SKY LAND.exe" -Force
+          $zip = Join-Path $PWD "SKY LAND SOURCE.zip"
+          Compress-Archive -Path @("SKY_LAND_ATUALIZADO/SkyLand", "SKY_LAND_ATUALIZADO/SKY LAND.exe") -DestinationPath $zip -Force
+
+      - name: Commit updated source, icon, executable and source package
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md "SKY_LAND_ATUALIZADO/SkyLand" "SKY_LAND_ATUALIZADO/SKY LAND.exe" "SKY LAND SOURCE.zip"
+          git diff --cached --quiet
+          if ($LASTEXITCODE -ne 0) {
+            git commit -m "chore: publish SKY LAND 1.0.1 [skip ci]"
+            git push
+          } else {
+            Write-Host "Nenhuma alteração adicional para commit."
+          }
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: SKY-LAND-Windows-x64-v1.0.1
+          path: |
+            ${{ runner.temp }}\skyland-publish\SKY LAND.exe
+            SKY LAND SOURCE.zip
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.1
+          name: SKY LAND v1.0.1
+          target_commitish: main
+          body: |
+            Atualização do SKY LAND com o ícone em múltiplas resoluções e a identidade visual roxa (#8B17C0).
+
+            O código-fonte completo também está incluído no arquivo SKY LAND SOURCE.zip.
+          files: |
+            ${{ runner.temp }}\skyland-publish\SKY LAND.exe
+            SKY LAND SOURCE.zip
+          make_latest: true
+          fail_on_unmatched_files: true
