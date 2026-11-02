@@ -57,8 +57,8 @@ def main() -> None:
     # Version the source and Windows manifest consistently for this build.
     for relative in ("App.xaml.cs", "SkyLand.csproj"):
         path = PROJECT / relative
-        update_text(path, {"1.0.0": "1.0.1"})
-    update_text(PROJECT / "app.manifest", {'version="1.0.0.0"': 'version="1.0.1.0"'})
+        update_text(path, {"1.0.0": "1.0.2", "1.0.1": "1.0.2"})
+    update_text(PROJECT / "app.manifest", {'version="1.0.0.0"': 'version="1.0.2.0"', 'version="1.0.1.0"': 'version="1.0.2.0"'})
 
     # Generate a real multi-resolution ICO from the original SKY LAND artwork.
     logo_path = PROJECT / "Assets" / "logo.png"

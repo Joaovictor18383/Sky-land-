@@ -65,7 +65,7 @@ jobs:
           git add README.md "SKY_LAND_ATUALIZADO/SkyLand" "SKY_LAND_ATUALIZADO/SKY LAND.exe" "SKY LAND SOURCE.zip"
           git diff --cached --quiet
           if ($LASTEXITCODE -ne 0) {
-            git commit -m "chore: publish SKY LAND 1.0.1 [skip ci]"
+            git commit -m "chore: publish SKY LAND 1.0.2 [skip ci]"
             git push
           } else {
             Write-Host "Nenhuma alteração adicional para commit."
@@ -74,7 +74,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: SKY-LAND-Windows-x64-v1.0.1
+          name: SKY-LAND-Windows-x64-v1.0.2
           path: |
             ${{ runner.temp }}\skyland-publish\SKY LAND.exe
             SKY LAND SOURCE.zip
@@ -84,8 +84,8 @@ jobs:
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.1
-          name: SKY LAND v1.0.1
+          tag_name: v1.0.2
+          name: SKY LAND v1.0.2
           target_commitish: main
           body: |
             Atualização do SKY LAND com o ícone em múltiplas resoluções e a identidade visual roxa (#8B17C0).

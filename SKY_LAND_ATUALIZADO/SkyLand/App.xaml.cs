@@ -6,9 +6,9 @@ namespace SkyLand
 {
     public partial class App : Application
     {
-        internal static string VersionText => "1.0.1";
+        internal static string VersionText => "1.0.2";
 
-        internal static string VersionDisplay => "1.0.1";
+        internal static string VersionDisplay => "1.0.2";
 
         /// <summary>Canal de automação de QA (ativo somente com o argumento --uicmd).</summary>
         internal static bool UiCmdMode { get; private set; }

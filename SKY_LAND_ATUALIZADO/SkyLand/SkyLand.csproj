@@ -9,9 +9,9 @@
     <RootNamespace>SkyLand</RootNamespace>
     <AssemblyName>SKY LAND</AssemblyName>
     <ApplicationIcon>Assets\app.ico</ApplicationIcon>
-    <Version>1.0.1</Version>
-    <FileVersion>1.0.1</FileVersion>
-    <InformationalVersion>1.0.1</InformationalVersion>
+    <Version>1.0.2</Version>
+    <FileVersion>1.0.2</FileVersion>
+    <InformationalVersion>1.0.2</InformationalVersion>
     <AssemblyTitle>SKY LAND</AssemblyTitle>
     <Product>SKY LAND</Product>
     <Description>Sistema de Controle e Operações</Description>

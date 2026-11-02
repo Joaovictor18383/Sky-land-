@@ -112,7 +112,7 @@ namespace SkyLand
         /// </summary>
         public static (GhRelease, GhAsset)? FindAppUpdateAsset(List<GhRelease> releases)
         {
-            var rx = new Regex(@"sky\s*land.*\.(exe|zip)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+            var rx = new Regex(@"sky[\s._-]*land.*\.(exe|zip)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
             foreach (var r in releases)
             {
                 var asset = r.Assets.FirstOrDefault(a => rx.IsMatch(a.Name ?? ""));
