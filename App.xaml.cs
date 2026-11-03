@@ -6,9 +6,9 @@ namespace SkyLand
 {
     public partial class App : Application
     {
-        internal static string VersionText => "1.0.0";
+        internal static string VersionText => "1.0.3";
 
-        internal static string VersionDisplay => "1.0.0";
+        internal static string VersionDisplay => "1.0.3";
 
         /// <summary>Canal de automação de QA (ativo somente com o argumento --uicmd).</summary>
         internal static bool UiCmdMode { get; private set; }
@@ -201,7 +201,7 @@ namespace SkyLand
 
         public static void ApplyTheme(string themeName)
         {
-            var file = themeName == "Black" ? "Theme.Black.xaml" : "Theme.DeepBlue.xaml";
+            var file = "Theme." + themeName + ".xaml";
             var dict = new ResourceDictionary
             {
                 Source = new Uri("pack://application:,,,/Themes/" + file, UriKind.RelativeOrAbsolute)

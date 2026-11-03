@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("SKY LAND")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Sistema de Controle e Operações")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00cc6bc021d6836ef3a7836bf147647949e06941")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de6976520b0608e97cbbd99eb6a8532f8c4903dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("SKY LAND")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SKY LAND")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
