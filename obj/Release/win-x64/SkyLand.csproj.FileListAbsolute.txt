@@ -1,0 +1,44 @@
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Controls\DownloadCard.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Controls\QuickTile.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\MainWindow.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\AboutPage.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\SettingsPage.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Themes\Theme.Black.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Themes\Theme.DeepBlue.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\App.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Controls\DownloadCard.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Controls\QuickTile.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\MainWindow.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\AboutPage.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\DashboardPage.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\MadiumPage.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\OtherPage.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\PotassiumPage.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\RealPage.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\SettingsPage.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\App.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\GeneratedInternalTypeHelper.g.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SKY LAND_MarkupCompile.cache
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SKY LAND_MarkupCompile.lref
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\DashboardPage.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\MadiumPage.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\OtherPage.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\PotassiumPage.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Pages\RealPage.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\Styles\Shared.baml
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SKY LAND.g.resources
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SkyLand.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SkyLand.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SkyLand.AssemblyInfo.cs
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SkyLand.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SkyLand.sourcelink.json
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\refint\SKY LAND.dll
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SKY LAND.pdb
+C:\Users\User\Desktop\git\SkyLand\bin\Release\win-x64\SKY LAND.exe
+C:\Users\User\Desktop\git\SkyLand\bin\Release\win-x64\SKY LAND.deps.json
+C:\Users\User\Desktop\git\SkyLand\bin\Release\win-x64\SKY LAND.runtimeconfig.json
+C:\Users\User\Desktop\git\SkyLand\bin\Release\win-x64\SKY LAND.dll
+C:\Users\User\Desktop\git\SkyLand\bin\Release\win-x64\SKY LAND.pdb
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SKY LAND.dll
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\SkyLand.genruntimeconfig.cache
+C:\Users\User\Desktop\git\SkyLand\obj\Release\win-x64\ref\SKY LAND.dll

@@ -1,0 +1,2 @@
+C:\Users\User\Desktop\git\SkyLand\bin\Release\win-x64\publish\SKY LAND.pdb
+C:\Users\User\Desktop\git\SkyLand\bin\Release\win-x64\publish\SKY LAND.exe

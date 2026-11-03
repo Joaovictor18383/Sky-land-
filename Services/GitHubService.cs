@@ -155,22 +155,37 @@ namespace SkyLand
                 // Histórico é a lista inteira de releases do repositório.
                 info.AllReleases = releases;
 
+                // Tenta encontrar asset do setup primeiro
                 var found = GitHubService.FindAppUpdateAsset(releases);
-                if (found == null)
+                if (found != null)
                 {
-                    info.HasUpdate = false;
-                    info.LatestVersion = null;
-                    info.LatestTag = null;
-                    return info;
+                    var (release, asset) = found.Value;
+                    info.LatestTag = release.Tag;
+                    info.LatestVersion = ParseVersionFromText(release.Tag) ?? ParseVersionFromText(release.Name) ?? "1.0";
+                    info.Release = release;
+                    info.Asset = asset;
+                    info.Notes = UiHelper.TrimText(release.Body, 400);
+                    info.HasUpdate = CompareVersion(info.LatestVersion, info.CurrentVersion) > 0;
                 }
-
-                var (release, asset) = found.Value;
-                info.LatestTag = release.Tag;
-                info.LatestVersion = ParseVersionFromText(release.Tag) ?? ParseVersionFromText(release.Name) ?? "1.0";
-                info.Release = release;
-                info.Asset = asset;
-                info.Notes = UiHelper.TrimText(release.Body, 400);
-                info.HasUpdate = CompareVersion(info.LatestVersion, info.CurrentVersion) > 0;
+                else
+                {
+                    // Se não encontrou asset, verifica apenas pela versão da release mais recente
+                    var latestRelease = releases.FirstOrDefault();
+                    if (latestRelease != null)
+                    {
+                        info.LatestTag = latestRelease.Tag;
+                        info.LatestVersion = ParseVersionFromText(latestRelease.Tag) ?? ParseVersionFromText(latestRelease.Name) ?? "1.0";
+                        info.Release = latestRelease;
+                        info.Notes = UiHelper.TrimText(latestRelease.Body, 400);
+                        info.HasUpdate = CompareVersion(info.LatestVersion, info.CurrentVersion) > 0;
+                    }
+                    else
+                    {
+                        info.HasUpdate = false;
+                        info.LatestVersion = null;
+                        info.LatestTag = null;
+                    }
+                }
             }
             catch (Exception ex)
             {
