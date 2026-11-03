@@ -5,7 +5,7 @@ namespace SkyLand
 {
     public class AppSettings
     {
-        public string Theme { get; set; } = "Black";
+        public string Theme { get; set; } = "DeepBlue";
         public string DownloadsDir { get; set; } = "";
         public bool AutoUpdateCheck { get; set; } = true;
     }

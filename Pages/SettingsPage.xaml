@@ -10,28 +10,6 @@
                            Text="Configure a pasta de downloads e gerencie atualizações do SKY LAND."
                            Margin="0,8,0,28" />
 
-                <!-- ===== TEMA ===== -->
-                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
-                    <StackPanel>
-                        <TextBlock Text="Tema do aplicativo" Style="{StaticResource T.CardTitle}" />
-                        <TextBlock Style="{StaticResource T.CardSubtitle}"
-                                   Text="Escolha a cor do tema para personalizar a aparência do SKY LAND."
-                                   Margin="0,3,0,12" />
-                        <WrapPanel>
-                            <Button x:Name="BtnThemeBlack" Style="{StaticResource BtnGhost}"
-                                    Content="Preto" Click="OnThemeBlackClick" Margin="0,0,8,8" Width="80" />
-                            <Button x:Name="BtnThemeBlue" Style="{StaticResource BtnGhost}"
-                                    Content="Azul" Click="OnThemeBlueClick" Margin="0,0,8,8" Width="80" />
-                            <Button x:Name="BtnThemeGreen" Style="{StaticResource BtnGhost}"
-                                    Content="Verde" Click="OnThemeGreenClick" Margin="0,0,8,8" Width="80" />
-                            <Button x:Name="BtnThemeRed" Style="{StaticResource BtnGhost}"
-                                    Content="Vermelho" Click="OnThemeRedClick" Margin="0,0,8,8" Width="80" />
-                            <Button x:Name="BtnThemePurple" Style="{StaticResource BtnGhost}"
-                                    Content="Roxo" Click="OnThemePurpleClick" Margin="0,0,8,8" Width="80" />
-                        </WrapPanel>
-                    </StackPanel>
-                </Border>
-
                 <!-- ===== DOWNLOADS ===== -->
                 <Border Style="{StaticResource Card}" Margin="0,0,0,14">
                     <StackPanel>

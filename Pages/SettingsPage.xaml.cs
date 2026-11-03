@@ -29,37 +29,8 @@ namespace SkyLand.Pages
 
         private void SyncThemeMarks()
         {
-            // Carrega o tema salvo
-            LoadTheme(SettingsStore.Current.Theme ?? "Black");
+            // Tema removido - apenas um tema disponível
         }
-
-        private void LoadTheme(string themeName)
-        {
-            var app = Application.Current as App;
-            if (app == null) return;
-
-            // Remove o tema atual
-            var oldTheme = app.Resources.MergedDictionaries.FirstOrDefault(d => d.Source != null && d.Source.OriginalString.Contains("Themes/"));
-            if (oldTheme != null)
-            {
-                app.Resources.MergedDictionaries.Remove(oldTheme);
-            }
-
-            // Carrega o novo tema
-            var themeUri = new Uri($"/Themes/Theme.{themeName}.xaml", UriKind.Relative);
-            var newTheme = new ResourceDictionary { Source = themeUri };
-            app.Resources.MergedDictionaries.Add(newTheme);
-
-            // Salva a preferência
-            SettingsStore.Current.Theme = themeName;
-            SettingsStore.Save();
-        }
-
-        private void OnThemeBlackClick(object sender, RoutedEventArgs e) => LoadTheme("Black");
-        private void OnThemeBlueClick(object sender, RoutedEventArgs e) => LoadTheme("Blue");
-        private void OnThemeGreenClick(object sender, RoutedEventArgs e) => LoadTheme("Green");
-        private void OnThemeRedClick(object sender, RoutedEventArgs e) => LoadTheme("Red");
-        private void OnThemePurpleClick(object sender, RoutedEventArgs e) => LoadTheme("Black"); // Purple é o tema Black com accent roxo
 
         // ==================== PASTA DE DOWNLOADS ====================
 

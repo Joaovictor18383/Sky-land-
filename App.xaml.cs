@@ -201,7 +201,7 @@ namespace SkyLand
 
         public static void ApplyTheme(string themeName)
         {
-            var file = "Theme." + themeName + ".xaml";
+            var file = themeName == "Black" ? "Theme.Black.xaml" : "Theme.DeepBlue.xaml";
             var dict = new ResourceDictionary
             {
                 Source = new Uri("pack://application:,,,/Themes/" + file, UriKind.RelativeOrAbsolute)
