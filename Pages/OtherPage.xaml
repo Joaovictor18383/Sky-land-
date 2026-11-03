@@ -1,0 +1,140 @@
+<UserControl x:Class="SkyLand.Pages.OtherPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ops="clr-namespace:SkyLand"
+             xmlns:controls="clr-namespace:SkyLand.Controls">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,24,32,32">
+
+                <TextBlock Text="Outros" Style="{StaticResource T.PageTitle}" Margin="0,0,0,0" />
+                <TextBlock Style="{StaticResource T.PageSubtitle}"
+                           Text="Status dos executores (WEAO), AnyDesk e ferramentas auxiliares para Roblox."
+                           Margin="0,8,0,28" />
+
+                <!-- ===== STATUS DOS EXECUTORES ===== -->
+                <Border Style="{StaticResource Card}" Padding="28">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="Status dos executores" Style="{StaticResource T.CardTitle}" FontSize="17" />
+                                <TextBlock Text="Consulta em tempo real na API WEAO (weao.xyz)"
+                                           Style="{StaticResource T.CardSubtitle}" Margin="0,6,0,0" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                <Button x:Name="BtnCheck" Style="{StaticResource BtnPrimary}"
+                                        Content="Verificar agora" Click="OnCheckClick"
+                                        Margin="0,0,12,0" />
+                                <Button Style="{StaticResource BtnGhost}" Content="Abrir WEAO"
+                                        Click="OnOpenWeaoClick" />
+                            </StackPanel>
+                        </Grid>
+
+                        <ItemsControl x:Name="StatusList">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="12"
+                                            Background="{DynamicResource Brush.Surface.Solid2}"
+                                            BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
+                                            BorderThickness="1"
+                                            Padding="20,16" Margin="0,0,0,12">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Width="40" Height="40">
+                                                <Image Width="36" Height="36"
+                                                       Source="{Binding Name, Converter={StaticResource NameArt}}"
+                                                       Visibility="{Binding Name, Converter={StaticResource ArtVis}}"
+                                                       VerticalAlignment="Center" Stretch="Uniform"
+                                                       RenderOptions.BitmapScalingMode="HighQuality" />
+                                                <Ellipse Width="14" Height="14"
+                                                         Fill="{Binding Dot}"
+                                                         VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                         Visibility="{Binding Name, Converter={StaticResource ArtInv}}" />
+                                            </Grid>
+                                            <StackPanel Grid.Column="1" Margin="16,0,16,0" VerticalAlignment="Center">
+                                                <TextBlock FontSize="15" FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource Brush.Text.Primary}"
+                                                           Text="{Binding Name}" />
+                                                <TextBlock Style="{StaticResource T.Small}"
+                                                           Margin="0,4,0,0"
+                                                           Text="{Binding Detail}" />
+                                            </StackPanel>
+                                            <Border Grid.Column="2" CornerRadius="999"
+                                                    Background="{Binding ChipBackground}"
+                                                    Padding="16,8" VerticalAlignment="Center">
+                                                <TextBlock FontSize="12" FontWeight="SemiBold"
+                                                           Foreground="{Binding ChipForeground}"
+                                                           Text="{Binding State}" />
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+
+                        <TextBlock Style="{StaticResource T.Small}" Margin="0,12,0,0"
+                                   Text="Fonte: WhatExpsAre.Online (WEAO API). Online = atualizado; Desatualizado = sem atualização compatível." />
+                    </StackPanel>
+                </Border>
+
+                <!-- ===== ANYDESK ===== -->
+                <controls:DownloadCard DataContext="{x:Static ops:OpsStore.AnyDesk}"
+                                       Margin="0,16,0,0">
+                    <controls:DownloadCard.Actions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource BtnPrimary}"
+                                    Content="Baixar AnyDesk" Click="OnAnyDeskClick" />
+                        </StackPanel>
+                    </controls:DownloadCard.Actions>
+                </controls:DownloadCard>
+
+                <!-- ===== FISHSTRAP ===== -->
+                <controls:DownloadCard DataContext="{x:Static ops:OpsStore.Fishstrap}"
+                                       Margin="0,16,0,0">
+                    <controls:DownloadCard.Actions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource BtnPrimary}"
+                                    Content="Baixar Fishstrap" Click="OnFishstrapClick" />
+                        </StackPanel>
+                    </controls:DownloadCard.Actions>
+                </controls:DownloadCard>
+
+                <!-- ===== ROBLOX ACCOUNT MANAGER ===== -->
+                <controls:DownloadCard DataContext="{x:Static ops:OpsStore.Ram}"
+                                       Margin="0,16,0,0">
+                    <controls:DownloadCard.Actions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource BtnPrimary}"
+                                    Content="Baixar RAM" Click="OnRamClick" />
+                        </StackPanel>
+                    </controls:DownloadCard.Actions>
+                </controls:DownloadCard>
+
+                <!-- ===== MULTIBLOXY ===== -->
+                <controls:DownloadCard DataContext="{x:Static ops:OpsStore.MultiBloxy}"
+                                       Margin="0,16,0,0">
+                    <controls:DownloadCard.Actions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource BtnPrimary}"
+                                    Content="Baixar MultiBloxy" Click="OnMultiBloxyClick" />
+                        </StackPanel>
+                    </controls:DownloadCard.Actions>
+                </controls:DownloadCard>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

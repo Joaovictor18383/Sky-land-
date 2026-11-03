@@ -1,0 +1,158 @@
+<Window x:Class="SkyLand.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SKY LAND"
+        Width="1150" Height="720"
+        MinWidth="1000" MinHeight="640"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="True"
+        FontFamily="{StaticResource Font.App}">
+
+    <Grid x:Name="RootGrid" Margin="0">
+        <Border x:Name="RootBorder"
+                CornerRadius="16"
+                BorderBrush="{DynamicResource Brush.Stroke}"
+                BorderThickness="1"
+                Background="{DynamicResource Brush.Window.BackgroundGradient}">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="274" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- ================= BARRA LATERAL ================= -->
+                <Border Grid.Column="0"
+                        Background="{DynamicResource Brush.Sidebar.Background}"
+                        BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
+                        BorderThickness="0,0,1,0"
+                        CornerRadius="16,0,0,16"
+                        ClipToBounds="True">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="90" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Logo -->
+                        <Grid Margin="20,18,14,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Width="44" Height="44"
+                                   Source="pack://application:,,,/Assets/emblem.png"
+                                   Stretch="Uniform" VerticalAlignment="Center"
+                                   RenderOptions.BitmapScalingMode="HighQuality">
+                                <Image.Effect>
+                                    <DropShadowEffect Color="#8B5CF6" BlurRadius="16" ShadowDepth="3"
+                                                      Direction="-90" Opacity="0.4" />
+                                </Image.Effect>
+                            </Image>
+                            <StackPanel Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center">
+                                <TextBlock Text="SKY LAND" FontSize="20" FontWeight="Bold"
+                                           Foreground="{DynamicResource Brush.Hero}" />
+                                <TextBlock Text="SISTEMA DE CONTROLE"
+                                           FontSize="9" Foreground="{DynamicResource Brush.Text.Dim}"
+                                           Margin="0,4,0,0" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Navegação -->
+                        <StackPanel Grid.Row="1" Margin="8,12,8,12">
+                            <RadioButton x:Name="NavDash" Style="{StaticResource NavItem}"
+                                         GroupName="Nav" Content="Início" Tag="&#xE80F;"
+                                         IsChecked="True" Checked="OnNavChecked" />
+                            <RadioButton x:Name="NavPotassium" Style="{StaticResource NavItem}"
+                                         GroupName="Nav" Content="Potassium" Tag="Potassium"
+                                         Checked="OnNavChecked" />
+                            <RadioButton x:Name="NavMadium" Style="{StaticResource NavItem}"
+                                         GroupName="Nav" Content="Madium" Tag="Madium"
+                                         Checked="OnNavChecked" />
+                            <RadioButton x:Name="NavReal" Style="{StaticResource NavItem}"
+                                         GroupName="Nav" Content="Real" Tag="Real"
+                                         Checked="OnNavChecked" />
+                            <RadioButton x:Name="NavOther" Style="{StaticResource NavItem}"
+                                         GroupName="Nav" Content="Outros" Tag="&#xE712;"
+                                         Checked="OnNavChecked" />
+
+                            <Border Height="1" Background="{DynamicResource Brush.Stroke.Subtle}"
+                                    Margin="12,14,12,14" />
+
+                            <RadioButton x:Name="NavSettings" Style="{StaticResource NavItem}"
+                                         GroupName="Nav" Content="Configurações" Tag="&#xE713;"
+                                         Checked="OnNavChecked" />
+                            <RadioButton x:Name="NavAbout" Style="{StaticResource NavItem}"
+                                         GroupName="Nav" Content="Sobre" Tag="&#xE946;"
+                                         Checked="OnNavChecked" />
+                        </StackPanel>
+
+                        <!-- Rodapé -->
+                        <StackPanel Grid.Row="2" Margin="24,0,20,20">
+                            <Border Height="1" Background="{DynamicResource Brush.Stroke.Subtle}"
+                                    Margin="0,0,0,16" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- ================= CONTEÚDO ================= -->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="46" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Barra de título -->
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="CrumbText" Text="Início"
+                                   VerticalAlignment="Center" Margin="28,0,0,0"
+                                   Foreground="{DynamicResource Brush.Text.Secondary}"
+                                   FontSize="12.5" />
+                        <StackPanel x:Name="WindowButtons" Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                                    Margin="0,0,10,0">
+                            <Button x:Name="BtnMin" Style="{StaticResource WinBtn}"
+                                    Content="&#xE921;" Click="BtnMin_Click" ToolTip="Minimizar" />
+                            <Button x:Name="BtnMax" Style="{StaticResource WinBtn}"
+                                    Content="&#xE922;" Click="BtnMax_Click" ToolTip="Maximizar" />
+                            <Button x:Name="BtnClose" Style="{StaticResource WinBtnClose}"
+                                    Content="&#xE8BB;" Click="BtnClose_Click" ToolTip="Fechar" />
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Páginas -->
+                    <ContentControl Grid.Row="1" x:Name="PageHost" Focusable="False" />
+                </Grid>
+
+                <!-- ================= TOASTS ================= -->
+                <StackPanel x:Name="ToastHost"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                            Margin="0,0,18,18" />
+
+                <!-- ================= DIÁLOGOS ================= -->
+                <Grid x:Name="DialogOverlay" Grid.Column="0" Grid.ColumnSpan="2"
+                      Visibility="Collapsed" Background="#84070712">
+                    <Border x:Name="DialogCard" Width="520" MaxWidth="580"
+                            CornerRadius="18"
+                            Background="{DynamicResource Brush.Surface.Solid2}"
+                            BorderBrush="{DynamicResource Brush.Stroke}"
+                            BorderThickness="1"
+                            Padding="24"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ContentControl x:Name="DialogContent" Focusable="False" />
+                    </Border>
+                </Grid>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

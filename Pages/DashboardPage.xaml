@@ -1,0 +1,35 @@
+<UserControl x:Class="SkyLand.Pages.DashboardPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:SkyLand.Controls">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,24,32,32">
+
+                <!-- ========= ATIVIDADES RÁPIDAS ========= -->
+                <TextBlock Text="ATIVIDADES RÁPIDAS" Style="{StaticResource T.SectionHead}" Margin="0,0,0,12" />
+                <UniformGrid Columns="3" HorizontalAlignment="Stretch">
+                    <controls:QuickTile x:Name="TilePotassium" Title="Potassium"
+                                        Subtitle="Baixar Potassium.zip — executor oficial."
+                                        ImagePath="pack://application:,,,/Assets/potassium.png" Margin="0,0,12,12" />
+                    <controls:QuickTile x:Name="TileMadium" Title="Madium"
+                                        Subtitle="Baixar / atualizar, reparar e dependências."
+                                        ImagePath="pack://application:,,,/Assets/madium.png" Margin="12,0,12,12" />
+                    <controls:QuickTile x:Name="TileReal" Title="Real"
+                                        Subtitle="Baixar o RealSetup.exe do repositório."
+                                        ImagePath="pack://application:,,,/Assets/real.png" Margin="12,0,0,12" />
+                    <controls:QuickTile x:Name="TileStatus" Title="Status dos executores"
+                                        Subtitle="Baixa dependência e status do executor."
+                                        ImagePath="pack://application:,,,/Assets/status_icon.png" Margin="0,12,12,12" />
+                    <controls:QuickTile x:Name="TileAnyDesk" Title="AnyDesk"
+                                        Subtitle="Baixar AnyDesk.exe — acesso remoto."
+                                        ImagePath="pack://application:,,,/Assets/anydesk.png" Margin="12,12,12,12" />
+                    <controls:QuickTile x:Name="TileUpdates" Title="Atualizações do SKY LAND"
+                                        Subtitle="Verificar nova versão e histórico da aplicação."
+                                        Glyph="&#xE896;" Margin="12,12,0,12" />
+                </UniformGrid>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
