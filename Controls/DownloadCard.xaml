@@ -17,8 +17,8 @@
                         MouseEnter="ArtWrap_MouseEnter" MouseLeave="ArtWrap_MouseLeave"
                         Visibility="{Binding ArtUrl, Converter={StaticResource ArtVis}}">
                     <Border.Effect>
-                        <DropShadowEffect Color="#8A2FB8" BlurRadius="22" ShadowDepth="5"
-                                          Direction="-90" Opacity="0.32" />
+                        <DropShadowEffect Color="#000000" BlurRadius="24" ShadowDepth="4"
+                                          Direction="270" Opacity="0.4" />
                     </Border.Effect>
                     <Image Source="{Binding ArtUrl}" Stretch="Uniform"
                            RenderTransformOrigin="0.5,0.5">
