@@ -5,9 +5,12 @@ namespace SkyLand
 {
     public class AppSettings
     {
-        public string Theme { get; set; } = "DeepBlue";
+        public string Theme { get; set; } = "Black";
         public string DownloadsDir { get; set; } = "";
         public bool AutoUpdateCheck { get; set; } = true;
+
+        /// <summary>API key do AgentRouter (https://agentrouter.org) para integrações de IA.</summary>
+        public string AgentRouterApiKey { get; set; } = "";
     }
 
     /// <summary>Configurações persistidas em %APPDATA%\SKY LAND\settings.json.</summary>
