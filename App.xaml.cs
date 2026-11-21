@@ -207,10 +207,16 @@ namespace SkyLand
                 Source = new Uri("pack://application:,,,/Themes/" + file, UriKind.RelativeOrAbsolute)
             };
             var app = Current;
-            if (app != null && app.Resources.MergedDictionaries.Count > 0)
+            if (app == null) return;
+
+            // Remove todos os dicionários de tema já mesclados (evita acúmulo/duplicatas).
+            for (int i = app.Resources.MergedDictionaries.Count - 1; i >= 0; i--)
             {
-                app.Resources.MergedDictionaries[0] = dict;
+                var src = app.Resources.MergedDictionaries[i].Source?.OriginalString;
+                if (src != null && src.Contains("/Themes/"))
+                    app.Resources.MergedDictionaries.RemoveAt(i);
             }
+            app.Resources.MergedDictionaries.Insert(0, dict);
         }
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
