@@ -1,0 +1,29 @@
+name: Homologacao
+
+on:
+  push:
+    branches: [homologacao]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Publicar SKY LAND (homologacao)
+        run: dotnet publish SkyLand.csproj -c Release -r win-x64 --self-contained false
+
+      - name: Criar release de homologacao
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $exe = "bin\Release\win-x64\publish\SKY LAND.exe"
+          if (-not (Test-Path $exe)) { $exe = (Get-ChildItem -Recurse -Filter "SKY LAND.exe" bin\Release | Select-Object -First 1).FullName }
+          Copy-Item $exe "HML-Setup.exe" -Force
+          gh release delete homologacao --yes --cleanup-tag 2>$null
+          gh release create homologacao "HML-Setup.exe" --title "SKY LAND - Homologacao" --notes "Versao de testes para validacao. Nao instalar em producao."
