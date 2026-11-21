@@ -4,29 +4,80 @@
              xmlns:controls="clr-namespace:SkyLand.Controls">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,24,32,32">
+            <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,26,32,32">
 
-                <!-- ========= ATIVIDADES RÁPIDAS ========= -->
-                <TextBlock Text="ATIVIDADES RÁPIDAS" Style="{StaticResource T.SectionHead}" Margin="0,0,0,12" />
+                <Border CornerRadius="20" Padding="32,28" Margin="0,0,0,28"
+                        Background="{DynamicResource Brush.Surface}"
+                        BorderBrush="{DynamicResource Brush.Stroke.Hover}"
+                        BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel VerticalAlignment="Center" MaxWidth="620">
+                            <Border Style="{StaticResource Chip}" HorizontalAlignment="Left" Margin="0,0,0,16">
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="6" Height="6" Fill="{DynamicResource Brush.Success}" VerticalAlignment="Center" />
+                                    <TextBlock Text="CENTRAL DE CONTROLE" Style="{StaticResource T.Eyebrow}" Margin="8,0,0,0" />
+                                </StackPanel>
+                            </Border>
+                            <TextBlock FontSize="32" FontWeight="SemiBold" TextWrapping="Wrap"
+                                       Foreground="{DynamicResource Brush.Text.Primary}">
+                                <Run Text="Tudo o que você precisa." />
+                                <LineBreak />
+                                <Run Text="Em um só lugar." Foreground="{DynamicResource Brush.Hero}" />
+                            </TextBlock>
+                            <TextBlock Style="{StaticResource T.PageSubtitle}" MaxWidth="520"
+                                       HorizontalAlignment="Left" Margin="0,12,0,0"
+                                       Text="Baixe executores, instale dependências e gerencie suas ferramentas com segurança e praticidade." />
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="148" Height="148" CornerRadius="36"
+                                Margin="32,0,6,0" VerticalAlignment="Center"
+                                Background="{DynamicResource Brush.Accent.Soft}"
+                                BorderBrush="{DynamicResource Brush.Stroke.Hover}" BorderThickness="1">
+                            <Image Source="pack://application:,,,/Assets/logo.png"
+                                   Width="122" Height="122" Stretch="Uniform"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Grid Margin="0,0,0,14">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Acesso rápido" FontSize="20" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource Brush.Text.Primary}" />
+                        <TextBlock Text="Escolha uma ferramenta para começar" Style="{StaticResource T.CardSubtitle}" Margin="0,4,0,0" />
+                    </StackPanel>
+                    <Border Grid.Column="1" Style="{StaticResource Chip}" VerticalAlignment="Center"
+                            Background="{DynamicResource Brush.Surface}">
+                        <TextBlock Text="6 ATALHOS" Style="{StaticResource T.Eyebrow}" />
+                    </Border>
+                </Grid>
+
                 <UniformGrid Columns="3" HorizontalAlignment="Stretch">
                     <controls:QuickTile x:Name="TilePotassium" Title="Potassium"
-                                        Subtitle="Baixar Potassium.zip — executor oficial."
+                                        Subtitle="Baixe o pacote oficial do executor."
                                         ImagePath="pack://application:,,,/Assets/potassium.png" Margin="0,0,12,12" />
                     <controls:QuickTile x:Name="TileMadium" Title="Madium"
-                                        Subtitle="Baixar / atualizar, reparar e dependências."
-                                        ImagePath="pack://application:,,,/Assets/madium.png" Margin="12,0,12,12" />
+                                        Subtitle="Novo instalador 1.1.2 e reparo completo."
+                                        ImagePath="pack://application:,,,/Assets/madium.png" Margin="0,0,12,12" />
                     <controls:QuickTile x:Name="TileReal" Title="Real"
-                                        Subtitle="Baixar o RealSetup.exe do repositório."
-                                        ImagePath="pack://application:,,,/Assets/real.png" Margin="12,0,0,12" />
+                                        Subtitle="Baixe o RealSetup pelo repositório oficial."
+                                        ImagePath="pack://application:,,,/Assets/real.png" Margin="0,0,0,12" />
                     <controls:QuickTile x:Name="TileStatus" Title="Status dos executores"
-                                        Subtitle="Baixa dependência e status do executor."
-                                        ImagePath="pack://application:,,,/Assets/status_icon.png" Margin="0,12,12,12" />
+                                        Subtitle="Consulte a disponibilidade em tempo real."
+                                        ImagePath="pack://application:,,,/Assets/status_icon.png" Margin="0,0,12,0" />
                     <controls:QuickTile x:Name="TileAnyDesk" Title="AnyDesk"
-                                        Subtitle="Baixar AnyDesk.exe — acesso remoto."
-                                        ImagePath="pack://application:,,,/Assets/anydesk.png" Margin="12,12,12,12" />
-                    <controls:QuickTile x:Name="TileUpdates" Title="Atualizações do SKY LAND"
-                                        Subtitle="Verificar nova versão e histórico da aplicação."
-                                        Glyph="&#xE896;" Margin="12,12,0,12" />
+                                        Subtitle="Acesso remoto com download direto."
+                                        ImagePath="pack://application:,,,/Assets/anydesk.png" Margin="0,0,12,0" />
+                    <controls:QuickTile x:Name="TileUpdates" Title="Atualizações"
+                                        Subtitle="Mantenha o SKY LAND sempre atualizado."
+                                        Glyph="&#xE896;" Margin="0" />
                 </UniformGrid>
 
             </StackPanel>
