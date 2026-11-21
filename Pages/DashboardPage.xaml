@@ -13,13 +13,13 @@
                             BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
                             BorderThickness="1">
                         <Grid>
-                            <Ellipse Width="340" Height="340" HorizontalAlignment="Right"
-                                     VerticalAlignment="Center" Margin="0,0,-120,0"
-                                     Fill="{DynamicResource Brush.Accent.Soft}" Opacity="0.55" />
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
+                            <Ellipse Width="340" Height="340" HorizontalAlignment="Right"
+                                     VerticalAlignment="Center" Margin="0,0,-120,0"
+                                     Fill="{DynamicResource Brush.Accent.Soft}" Opacity="0.55" />
                             <StackPanel VerticalAlignment="Center" MaxWidth="620">
                                 <Border Style="{StaticResource Chip}" HorizontalAlignment="Left" Margin="0,0,0,16">
                                     <StackPanel Orientation="Horizontal">
