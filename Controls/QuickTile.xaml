@@ -51,11 +51,11 @@
                 </Border>
 
                 <Border Grid.Column="1" Width="30" Height="30" CornerRadius="10"
-                        Background="{DynamicResource Brush.Surface.Solid2}"
-                        BorderBrush="{DynamicResource Brush.Stroke.Subtle}" BorderThickness="1"
+                        Background="{DynamicResource Brush.Accent.Soft}"
+                        BorderBrush="{DynamicResource Brush.Stroke.Hover}" BorderThickness="1"
                         HorizontalAlignment="Right" VerticalAlignment="Top">
                     <TextBlock Text="&#xE72A;" FontFamily="{StaticResource Font.Icons}" FontSize="11"
-                               Foreground="{DynamicResource Brush.Text.Secondary}"
+                               Foreground="{DynamicResource Brush.Accent.Bright}"
                                HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
             </Grid>
