@@ -11,11 +11,11 @@ namespace SkyLand
             "Instala .NET 8, Visual C++ x64/x86 e WebView2 quando ausentes.", null, "E713");
 
         public static readonly OpVM MadiumInstall = new("Baixar / Atualizar Madium",
-            "Abre a página oficial de downloads (pacote ZIP + launcher).", "M", null,
+            "Instalador oficial 1.1.2 — baixe e execute quando quiser.", "M", null,
             "pack://application:,,,/Assets/madium.png");
 
         public static readonly OpVM MadiumRepair = new("Arrumar problemas do Madium",
-            "Remove a instalação antiga (com sua confirmação) e abre o download oficial.", null, "E912");
+            "Remove a instalação antiga (com sua confirmação) e reinstala.", null, "E912");
 
         public static readonly OpVM MadiumDeps = new("Dependências do Madium",
             "Instala .NET 8, Visual C++ x64/x86 e WebView2 quando ausentes.", null, "E713");
