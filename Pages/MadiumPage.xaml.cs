@@ -24,11 +24,10 @@ namespace SkyLand.Pages
             var confirm = await _host.ConfirmAsync(
                 "Baixar Madium",
                 "O SKY LAND vai:\n\n" +
-                "✓ Baixar o instalador do Madium do servidor oficial\n" +
-                "✓ Executar o instalador automaticamente\n" +
-                "✓ Você acompanhará a instalação na janela do Madium\n\n" +
-                "Deseja continuar?",
-                "Baixar", "Cancelar", false);
+                "✓ Abrir a página oficial de downloads do Madium no navegador\n" +
+                "✓ Você baixa o pacote mais recente (ZIP + launcher) direto do site oficial\n\n" +
+                "O Madium não distribui mais um instalador direto. Deseja continuar?",
+                "Abrir página", "Cancelar", false);
 
             if (!confirm) return;
 
@@ -45,9 +44,8 @@ namespace SkyLand.Pages
                 "✓ Analisar instalações antigas do Madium\n" +
                 "✓ Encerrar processos do Madium em execução\n" +
                 "✓ Remover pastas e atalhos antigos\n" +
-                "✓ Baixar o instalador novo para a Área de Trabalho\n" +
                 "✓ Verificar e instalar dependências (Visual C++)\n" +
-                "✓ Executar o instalador para reinstalar\n\n" +
+                "✓ Abrir a página oficial para baixar a versão nova\n\n" +
                 "Deseja continuar?",
                 "Reparar", "Cancelar", true);
 
