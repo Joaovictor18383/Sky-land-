@@ -108,14 +108,24 @@ namespace SkyLand
 
         /// <summary>
         /// Encontra a release mais recente que publica um executável/zip do SKY LAND
-        /// (convenção: asset arquivo com "SKY LAND" e extensão .exe ou .zip). Null se não publicado.
+        /// (convenção: asset com "SKY LAND"/"SKY.LAND" e extensão .exe ou .zip). Prefere .exe.
+        /// Null se não publicado.
         /// </summary>
         public static (GhRelease, GhAsset)? FindAppUpdateAsset(List<GhRelease> releases)
         {
-            var rx = new Regex(@"sky\s*land.*\.(exe|zip)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+            var rxName = new Regex(@"sky[\s._\-]*land", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+            var rxExe = new Regex(@"\.exe$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+            var rxZip = new Regex(@"\.zip$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
             foreach (var r in releases)
             {
-                var asset = r.Assets.FirstOrDefault(a => rx.IsMatch(a.Name ?? ""));
+                var candidates = r.Assets
+                    .Where(a => rxName.IsMatch(a.Name ?? "")
+                                && (rxExe.IsMatch(a.Name ?? "") || rxZip.IsMatch(a.Name ?? ""))
+                                && a.Name.IndexOf("source", StringComparison.OrdinalIgnoreCase) < 0)
+                    .ToList();
+                var asset = candidates.FirstOrDefault(a => rxExe.IsMatch(a.Name))
+                            ?? candidates.FirstOrDefault();
                 if (asset != null)
                     return (r, asset);
             }
