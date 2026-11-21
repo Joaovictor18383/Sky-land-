@@ -21,11 +21,11 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Madium" Style="{StaticResource T.PageTitle}" VerticalAlignment="Center" />
                             <Border Style="{StaticResource Chip}" Margin="14,0,0,0" VerticalAlignment="Center">
-                                <TextBlock Text="SITE OFICIAL" Style="{StaticResource T.Eyebrow}" />
+                                <TextBlock Text="INSTALADOR 1.1.2" Style="{StaticResource T.Eyebrow}" />
                             </Border>
                         </StackPanel>
                         <TextBlock Style="{StaticResource T.PageSubtitle}"
-                                   Text="Abra a página oficial para baixar a versão mais recente do Madium, repare uma instalação problemática (com sua confirmação) e instale as dependências oficiais."
+                                   Text="Baixe ou atualize o Madium (Installer-1.1.2.exe), repare uma instalação problemática (com sua confirmação) e instale as dependências oficiais."
                                    MaxWidth="700" HorizontalAlignment="Left"
                                    Margin="0,8,0,0" />
                     </StackPanel>
