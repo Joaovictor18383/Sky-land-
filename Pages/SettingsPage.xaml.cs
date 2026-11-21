@@ -22,6 +22,7 @@ namespace SkyLand.Pages
             VersionText.Text = "SKY LAND v" + App.VersionText + "  —  Windows x64  —  sem servidor externo: só o GitHub e a WEAO";
             SyncThemeMarks();
             SyncFolderBox();
+            SyncAgentRouterBox();
             SwAutoUpdate.IsChecked = SettingsStore.Current.AutoUpdateCheck;
         }
 
@@ -29,8 +30,24 @@ namespace SkyLand.Pages
 
         private void SyncThemeMarks()
         {
-            // Tema removido - apenas um tema disponível
+            // Carrega o tema salvo
+            LoadTheme(SettingsStore.Current.Theme ?? "Black");
         }
+
+        private void LoadTheme(string themeName)
+        {
+            // Remove o tema atual e carrega o novo (mesma rotina usada na inicialização).
+            App.ApplyTheme(themeName);
+
+            // Salva a preferência
+            SettingsStore.Current.Theme = themeName;
+            SettingsStore.Save();
+        }
+
+        private void OnThemeBlackClick(object sender, RoutedEventArgs e) => LoadTheme("Black");
+        private void OnThemeBlueClick(object sender, RoutedEventArgs e) => LoadTheme("Blue");
+        private void OnThemeGreenClick(object sender, RoutedEventArgs e) => LoadTheme("Green");
+        private void OnThemeRedClick(object sender, RoutedEventArgs e) => LoadTheme("Red");
 
         // ==================== PASTA DE DOWNLOADS ====================
 
@@ -74,6 +91,85 @@ namespace SkyLand.Pages
         {
             SettingsStore.Current.AutoUpdateCheck = SwAutoUpdate.IsChecked == true;
             SettingsStore.Save();
+        }
+
+        // ==================== IA · AGENTROUTER ====================
+
+        private void SyncAgentRouterBox()
+        {
+            AgentKeyBox.TextChanged -= OnAgentKeyChanged; // evita disparo durante o preenchimento
+            AgentKeyBox.Text = SettingsStore.Current.AgentRouterApiKey ?? "";
+            AgentKeyBox.TextChanged += OnAgentKeyChanged;
+            SyncAgentRouterStatus();
+        }
+
+        private void SyncAgentRouterStatus()
+        {
+            var k = (SettingsStore.Current.AgentRouterApiKey ?? "").Trim();
+            AgentStatus.Text = string.IsNullOrWhiteSpace(k)
+                ? "Nenhuma chave salva."
+                : "Chave salva (" + MaskKey(k) + ")  ·  endpoint " + AgentRouterService.BaseUrl;
+        }
+
+        private static string MaskKey(string k)
+        {
+            if (k.Length <= 10) return "••••";
+            return k[..6] + "…" + k[^4..];
+        }
+
+        private void OnAgentKeyChanged(object sender, TextChangedEventArgs e)
+        {
+            if (BtnAgentKeySave != null)
+                BtnAgentKeySave.IsEnabled = !string.IsNullOrWhiteSpace(AgentKeyBox.Text);
+        }
+
+        private void OnAgentKeySaveClick(object sender, RoutedEventArgs e)
+        {
+            var key = AgentKeyBox.Text.Trim();
+            if (key.Length == 0)
+            {
+                _host.Toast("Aguarde", "Cole a API key antes de salvar.", ToastKind.Warn);
+                return;
+            }
+
+            SettingsStore.Current.AgentRouterApiKey = key;
+            SettingsStore.Save();
+            SyncAgentRouterStatus();
+            ActivityService.Add(ActivityKind.Success, "API key do AgentRouter configurada (" + MaskKey(key) + ").");
+            _host.Toast("Chave salva", "A API key do AgentRouter foi configurada neste computador.", ToastKind.Success);
+        }
+
+        private async void OnAgentKeyTestClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BtnAgentKeyTest.IsEnabled = false;
+
+                // Salva o que estiver digitado antes de testar.
+                var typed = AgentKeyBox.Text.Trim();
+                if (typed.Length > 0 && typed != SettingsStore.Current.AgentRouterApiKey)
+                {
+                    SettingsStore.Current.AgentRouterApiKey = typed;
+                    SettingsStore.Save();
+                }
+
+                AgentStatus.Text = "Testando conexão com " + AgentRouterService.BaseUrl + "…";
+                var models = await AgentRouterService.ListModelsAsync();
+
+                var preview = models.Count > 0 ? string.Join(", ", models.Take(3)) + (models.Count > 3 ? ", …" : "") : "—";
+                AgentStatus.Text = "✓ Conexão OK — " + models.Count + " modelo(s) disponível(is): " + preview;
+                ActivityService.Add(ActivityKind.Success, "Teste do AgentRouter concluído (" + models.Count + " modelo(s)).");
+            }
+            catch (Exception ex)
+            {
+                AgentStatus.Text = "Falha no teste: " + UiHelper.FriendlyError(ex);
+                ActivityService.Add(ActivityKind.Error, "Teste do AgentRouter falhou: " + UiHelper.FriendlyError(ex));
+                _host.Toast("Teste falhou", UiHelper.FriendlyError(ex), ToastKind.Error);
+            }
+            finally
+            {
+                BtnAgentKeyTest.IsEnabled = true;
+            }
         }
 
         // ==================== ATUALIZAÇÕES ====================
@@ -133,6 +229,7 @@ namespace SkyLand.Pages
                     SetBanner(Kind.Success,
                         "Nova versão disponível: v" + _lastCheck.LatestVersion +
                         " (" + _lastCheck.LatestTag + ")\nArquivo publicado: " + _lastCheck.Asset.Name);
+                    UpdateActionsPanel.Visibility = Visibility.Visible;
                     BtnDownloadUpdate.Visibility = Visibility.Visible;
                 }
                 else
@@ -186,6 +283,7 @@ namespace SkyLand.Pages
                                 SetBanner(Kind.Success,
                                     "Atualização baixada e verificada:\n" + path +
                                     "\nConfirme a execução quando quiser reinstalar/instalar a nova versão.");
+                                UpdateActionsPanel.Visibility = Visibility.Visible;
                                 BtnRunUpdate.Visibility = Visibility.Visible;
                             });
                             ActivityService.Add(ActivityKind.Success, "Atualização baixada: " + Path.GetFileName(path));
@@ -195,6 +293,7 @@ namespace SkyLand.Pages
                             App.MainWindowRef?.Dispatcher.Invoke(() =>
                                 SetBanner(Kind.Danger,
                                     "Falha ao baixar ou validar a atualização — veja as atividades recentes."));
+                            UpdateActionsPanel.Visibility = Visibility.Collapsed;
                             BtnRunUpdate.Visibility = Visibility.Collapsed;
                             throw;
                         }
@@ -249,6 +348,7 @@ namespace SkyLand.Pages
 
         private void ClearUpdateActions()
         {
+            UpdateActionsPanel.Visibility = Visibility.Collapsed;
             BtnDownloadUpdate.Visibility = Visibility.Collapsed;
             BtnRunUpdate.Visibility = Visibility.Collapsed;
         }
