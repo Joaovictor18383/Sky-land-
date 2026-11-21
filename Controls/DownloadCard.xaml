@@ -12,7 +12,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Arte incorporada (Potassium / Madium / Real) — em destaque -->
-                <Border x:Name="ArtWrap" Width="80" Height="80"
+                <Border x:Name="ArtWrap" Width="68" Height="68"
                         VerticalAlignment="Center"
                         MouseEnter="ArtWrap_MouseEnter" MouseLeave="ArtWrap_MouseLeave"
                         Visibility="{Binding ArtUrl, Converter={StaticResource ArtVis}}">
@@ -56,12 +56,17 @@
             </Grid>
 
             <!-- Botões da página -->
-            <ContentPresenter x:Name="ActionsHost" Margin="0,14,0,0" />
+            <Border Margin="0,20,0,0" Padding="0,16,0,0"
+                    BorderBrush="{DynamicResource Brush.Stroke.Subtle}" BorderThickness="0,1,0,0">
+                <ContentPresenter x:Name="ActionsHost" />
+            </Border>
 
             <!-- Estado ocioso -->
-            <TextBlock Style="{StaticResource T.Small}" Text="Pronto."
-                       Margin="0,12,0,0"
-                       Visibility="{Binding IsIdle, Converter={StaticResource B2V}}" />
+            <StackPanel Orientation="Horizontal" Margin="0,14,0,0"
+                        Visibility="{Binding IsIdle, Converter={StaticResource B2V}}">
+                <Ellipse Width="6" Height="6" Fill="{DynamicResource Brush.Success}" VerticalAlignment="Center" />
+                <TextBlock Style="{StaticResource T.Small}" Text="Pronto para iniciar" Margin="8,0,0,0" />
+            </StackPanel>
 
             <!-- Painel de execução -->
             <StackPanel Margin="0,14,0,0"
