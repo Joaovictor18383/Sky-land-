@@ -10,7 +10,7 @@ namespace SkyLand
     internal static class ExecutorOps
     {
         public const string PotassiumUrl = "https://files.potassium.pro/OpXOyuApWKTlFzrV.zip";
-        public const string MadiumUrl = "https://cdn.getmadium.me/Installer-1.1.0.exe";
+        public const string MadiumDownloadPage = "https://getmadium.net/downloads/";
         public const string RealUrl = "https://github.com/Joaovictor18383/Executores/releases/download/real-v1/RealSetup.exe";
         public const string FishstrapRepo = "fishstrap/fishstrap";
         public const string RamRepo = "ic3w0lf22/Roblox-Account-Manager";
@@ -177,40 +177,15 @@ namespace SkyLand
         // ------------------------------------------------------------------ Madium
         public static async Task DownloadMadiumAsync(OpVM vm, IShell shell, CancellationToken ct)
         {
-            var tempFile = Path.Combine(AppPaths.Temp, "Madium_Installer.exe");
-            vm.SetStatus("Baixando o instalador do Madium…");
-            await DownloadService.DownloadAsync(MadiumUrl, tempFile,
-                new Progress<DownloadProgress>(vm.SetDownloadProgress), ct);
-
-            var ok = await shell.ConfirmAsync(
-                "Executar o instalador do Madium",
-                "Download concluído com sucesso.\n\n" +
-                "Arquivo: " + tempFile + "\n\n" +
-                "Executar o instalador agora? Você acompanhará a instalação na janela do Madium.",
-                "Executar agora", "Somente o download", false);
-
-            if (ok)
-            {
-                vm.SetStatus("Executando o instalador do Madium — conclua as etapas na janela dele…");
-                try
-                {
-                    await ProcessRunner.RunInstallerAsync(tempFile, "", false, ct);
-                }
-                catch (Exception ex) when (ex is not OperationCanceledException)
-                {
-                    vm.SetResult(false, "Não foi possível executar o Madium: " + UiHelper.FriendlyError(ex));
-                    return;
-                }
-
-                try { File.Delete(tempFile); } catch { }
-                vm.SetResult(true, "Instalador do Madium executado e finalizado.");
-            }
-            else
-            {
-                vm.SetNeutralResult(
-                    "Download concluído — instalador salvo: Madium_Installer.exe (execute quando quiser).",
-                    AppPaths.Temp, tempFile);
-            }
+            // O Madium não distribui mais um instalador direto: a versão atual é um
+            // pacote ZIP + launcher obtido na página oficial de downloads.
+            vm.SetStatus("Abrindo a página oficial de download do Madium…");
+            await Task.Delay(300, ct);
+            ProcessRunner.OpenUrl(MadiumDownloadPage);
+            vm.SetNeutralResult(
+                "O Madium não publica mais um instalador direto — a versão atual é um pacote ZIP + launcher.\n" +
+                "A página oficial de downloads foi aberta no seu navegador: baixe o arquivo mais recente " +
+                "e siga as instruções de instalação indicadas lá.");
         }
 
         // ------------------------------------------------------------------ Madium — Arrumar problema
@@ -318,18 +293,7 @@ namespace SkyLand
                     "Instalação antiga do Madium removida: " + folderHits.Count + " pasta(s), " + shortcuts.Count + " atalho(s).");
             }
 
-            // 5) Baixa do instalador para a Área de Trabalho (igual ao original)
-            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            if (string.IsNullOrWhiteSpace(desktop))
-                desktop = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Desktop");
-            AppPaths.TryCreate(desktop);
-
-            var installer = Path.Combine(desktop, "Installer-1.1.0.exe");
-            vm.SetStatus("Baixando o instalador do Madium (Installer-1.1.0.exe)…");
-            await DownloadService.DownloadAsync(MadiumUrl, installer,
-                new Progress<DownloadProgress>(vm.SetDownloadProgress), ct);
-
-            // 6) Dependências VC++ (que o instalador do Madium precisa)
+            // 5) Dependências VC++ (exigidas pelo Madium)
             vm.SetBusy("Verificando dependências (Visual C++)…");
             if (!RuntimeChecks.HasVcRuntime("x64"))
             {
@@ -346,30 +310,15 @@ namespace SkyLand
                 if (okVc86) await InstallerOps.InstallVcAsync(vm, shell, ct, "x86");
             }
 
-            // 7) Executa o instalador
-            vm.SetBusy("Pronto para reinstalar.");
-            var okRun = await shell.ConfirmAsync(
-                "Executar instalador do Madium",
-                "Instalador salvo na Área de Trabalho:\n" + installer +
-                "\n\nExecutar agora e seguir as instruções na tela? (Use o instalador salvo para reinstalar ou atualizar; os avisos anteriores já contêm os detalhes.)",
-                "Executar agora", "Mais tarde", false);
+            // 6) O Madium não tem mais instalador direto — abre a página oficial de downloads.
+            vm.SetStatus("Abrindo a página oficial de download do Madium…");
+            await Task.Delay(300, ct);
+            ProcessRunner.OpenUrl(MadiumDownloadPage);
 
-            if (okRun)
-            {
-                vm.SetStatus("Executando Installer-1.1.0.exe — conclua na janela do instalador…");
-                try { await ProcessRunner.RunInstallerAsync(installer, "", false, ct); }
-                catch (Exception ex) when (ex is not OperationCanceledException)
-                {
-                    vm.SetResult(false, "Não foi possível executar o instalador: " + UiHelper.FriendlyError(ex));
-                    return;
-                }
-                vm.SetResult(true, "Madium reinstalado — instalador executado com sucesso.", desktop, installer);
-            }
-            else
-            {
-                vm.SetNeutralResult("Instalador salvo na Área de Trabalho: Installer-1.1.0.exe",
-                    desktop, installer);
-            }
+            vm.SetNeutralResult(
+                "Instalação antiga removida com sucesso.\n" +
+                "A página oficial de downloads do Madium foi aberta no navegador — " +
+                "baixe a versão mais recente (pacote ZIP + launcher) e siga as instruções de instalação.");
         }
 
         // ------------------------------------------------------------------ Fishstrap
