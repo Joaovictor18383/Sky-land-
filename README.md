@@ -33,7 +33,7 @@
 - 🔄 Verificação automática de atualizações
 - 📜 Histórico de versões
 - 🧹 Limpeza de arquivos temporários
-- 🎨 **Temas personalizados**: Preto, Azul, Verde, Vermelho, Roxo
+- 🎨 **Temas personalizados**: Preto, Azul, Verde, Vermelho
 
 ## 📋 Requisitos
 
@@ -74,11 +74,10 @@
 </div>
 
 Escolha entre:
-- ⬛ **Preto** - Tema escuro clássico
+- ⬛ **Preto** - Tema escuro com acento roxo #8B17C0
 - 🔵 **Azul** - Tema azul profundo
 - 🟢 **Verde** - Tema verde elegante
 - 🔴 **Vermelho** - Tema vermelho vibrante
-- 🟣 **Roxo** - Tema roxo com acento #8B17C0
 
 ## 🔄 Auto-Update
 
