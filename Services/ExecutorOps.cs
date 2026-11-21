@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace SkyLand
 {
@@ -10,7 +11,7 @@ namespace SkyLand
     internal static class ExecutorOps
     {
         public const string PotassiumUrl = "https://files.potassium.pro/OpXOyuApWKTlFzrV.zip";
-        public const string MadiumDownloadPage = "https://getmadium.net/downloads/";
+        public const string MadiumPageUrl = "https://www.mediafire.com/file/ii9670d6qfqwf17/Installer-1.1.2.exe/file";
         public const string RealUrl = "https://github.com/Joaovictor18383/Executores/releases/download/real-v1/RealSetup.exe";
         public const string FishstrapRepo = "fishstrap/fishstrap";
         public const string RamRepo = "ic3w0lf22/Roblox-Account-Manager";
@@ -174,18 +175,55 @@ namespace SkyLand
             vm.SetResult(true, "AnyDesk.exe baixado com sucesso.", Downloads, path);
         }
 
+        /// <summary>Resolve o link direto (downloadNNNN.mediafire.com) a partir da página do MediaFire.</summary>
+        private static async Task<string> ResolveMadiumDownloadUrlAsync(CancellationToken ct)
+        {
+            var html = await DownloadService.GetTextAsync(MadiumPageUrl, ct);
+            var m = Regex.Match(html, @"https://download\d+\.mediafire\.com/[^""'\s<>]+");
+            if (!m.Success)
+                throw new IOException("Não foi possível obter o link direto do Madium no MediaFire.");
+            return m.Value;
+        }
+
         // ------------------------------------------------------------------ Madium
         public static async Task DownloadMadiumAsync(OpVM vm, IShell shell, CancellationToken ct)
         {
-            // O Madium não distribui mais um instalador direto: a versão atual é um
-            // pacote ZIP + launcher obtido na página oficial de downloads.
-            vm.SetStatus("Abrindo a página oficial de download do Madium…");
-            await Task.Delay(300, ct);
-            ProcessRunner.OpenUrl(MadiumDownloadPage);
-            vm.SetNeutralResult(
-                "O Madium não publica mais um instalador direto — a versão atual é um pacote ZIP + launcher.\n" +
-                "A página oficial de downloads foi aberta no seu navegador: baixe o arquivo mais recente " +
-                "e siga as instruções de instalação indicadas lá.");
+            var directUrl = await ResolveMadiumDownloadUrlAsync(ct);
+
+            var tempFile = Path.Combine(AppPaths.Temp, "Installer-1.1.2.exe");
+            vm.SetStatus("Baixando o instalador do Madium…");
+            await DownloadService.DownloadAsync(directUrl, tempFile,
+                new Progress<DownloadProgress>(vm.SetDownloadProgress), ct);
+
+            var ok = await shell.ConfirmAsync(
+                "Executar o instalador do Madium",
+                "Download concluído com sucesso.\n\n" +
+                "Arquivo: " + tempFile + "\n\n" +
+                "Executar o instalador agora? Você acompanhará a instalação na janela do Madium.",
+                "Executar agora", "Somente o download", false);
+
+            if (ok)
+            {
+                vm.SetStatus("Executando o instalador do Madium — conclua as etapas na janela dele…");
+                try
+                {
+                    await ProcessRunner.RunInstallerAsync(tempFile, "", false, ct);
+                }
+                catch (Exception ex) when (ex is not OperationCanceledException)
+                {
+                    vm.SetResult(false, "Não foi possível executar o Madium: " + UiHelper.FriendlyError(ex));
+                    return;
+                }
+
+                try { File.Delete(tempFile); } catch { }
+                vm.SetResult(true, "Instalador do Madium executado e finalizado.");
+            }
+            else
+            {
+                vm.SetNeutralResult(
+                    "Download concluído — instalador salvo: Installer-1.1.2.exe (execute quando quiser).",
+                    AppPaths.Temp, tempFile);
+            }
         }
 
         // ------------------------------------------------------------------ Madium — Arrumar problema
@@ -310,15 +348,42 @@ namespace SkyLand
                 if (okVc86) await InstallerOps.InstallVcAsync(vm, shell, ct, "x86");
             }
 
-            // 6) O Madium não tem mais instalador direto — abre a página oficial de downloads.
-            vm.SetStatus("Abrindo a página oficial de download do Madium…");
-            await Task.Delay(300, ct);
-            ProcessRunner.OpenUrl(MadiumDownloadPage);
+            // 6) Baixa o instalador novo para a Área de Trabalho
+            var directUrl = await ResolveMadiumDownloadUrlAsync(ct);
+            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            if (string.IsNullOrWhiteSpace(desktop))
+                desktop = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Desktop");
+            AppPaths.TryCreate(desktop);
 
-            vm.SetNeutralResult(
-                "Instalação antiga removida com sucesso.\n" +
-                "A página oficial de downloads do Madium foi aberta no navegador — " +
-                "baixe a versão mais recente (pacote ZIP + launcher) e siga as instruções de instalação.");
+            var installer = Path.Combine(desktop, "Installer-1.1.2.exe");
+            vm.SetStatus("Baixando o instalador do Madium (Installer-1.1.2.exe)…");
+            await DownloadService.DownloadAsync(directUrl, installer,
+                new Progress<DownloadProgress>(vm.SetDownloadProgress), ct);
+
+            // 7) Executa o instalador
+            vm.SetBusy("Pronto para reinstalar.");
+            var okRun = await shell.ConfirmAsync(
+                "Executar instalador do Madium",
+                "Instalador salvo na Área de Trabalho:\n" + installer +
+                "\n\nExecutar agora e seguir as instruções na tela? (Use o instalador salvo para reinstalar ou atualizar; os avisos anteriores já contêm os detalhes.)",
+                "Executar agora", "Mais tarde", false);
+
+            if (okRun)
+            {
+                vm.SetStatus("Executando Installer-1.1.2.exe — conclua na janela do instalador…");
+                try { await ProcessRunner.RunInstallerAsync(installer, "", false, ct); }
+                catch (Exception ex) when (ex is not OperationCanceledException)
+                {
+                    vm.SetResult(false, "Não foi possível executar o instalador: " + UiHelper.FriendlyError(ex));
+                    return;
+                }
+                vm.SetResult(true, "Madium reinstalado — instalador executado com sucesso.", desktop, installer);
+            }
+            else
+            {
+                vm.SetNeutralResult("Instalador salvo na Área de Trabalho: Installer-1.1.2.exe",
+                    desktop, installer);
+            }
         }
 
         // ------------------------------------------------------------------ Fishstrap
