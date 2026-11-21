@@ -38,10 +38,10 @@ namespace SkyLand
                     " latest=" + (upd.LatestVersion ?? "(sem release do app publicada)") +
                     " historical=" + upd.AllReleases.Count);
 
-                var dest = Path.Combine(AppPaths.Temp, "selftest_GITHUB_SCRIPT.txt");
+                var dest = Path.Combine(AppPaths.Temp, "selftest_README.md");
                 long finalLen = 0;
                 await DownloadService.DownloadAsync(
-                    "https://raw.githubusercontent.com/Joaovictor18383/Sky-land-/main/GITHUB_SCRIPT.txt",
+                    "https://raw.githubusercontent.com/Joaovictor18383/Sky-land-/main/README.md",
                     dest,
                     new Progress<DownloadProgress>(p => finalLen = p.Received),
                     CancellationToken.None);
