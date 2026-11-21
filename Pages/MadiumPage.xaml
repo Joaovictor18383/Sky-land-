@@ -8,15 +8,15 @@
             <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,24,32,32">
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,28">
-                    <Image Height="100"
-                           Source="pack://application:,,,/Assets/madium.png"
-                           Stretch="Uniform" VerticalAlignment="Center"
-                           RenderOptions.BitmapScalingMode="HighQuality">
-                        <Image.Effect>
-                            <DropShadowEffect Color="#7C3AED" BlurRadius="28" ShadowDepth="6"
-                                              Direction="-90" Opacity="0.5" />
-                        </Image.Effect>
-                    </Image>
+                    <Border Width="96" Height="96" CornerRadius="24"
+                            Background="{DynamicResource Brush.Accent.Soft}"
+                            BorderBrush="{DynamicResource Brush.Stroke.Hover}" BorderThickness="1"
+                            VerticalAlignment="Center">
+                        <Image Width="72" Height="72"
+                               Source="pack://application:,,,/Assets/madium.png"
+                               Stretch="Uniform"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+                    </Border>
                     <StackPanel VerticalAlignment="Center" Margin="24,0,0,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Madium" Style="{StaticResource T.PageTitle}" VerticalAlignment="Center" />
