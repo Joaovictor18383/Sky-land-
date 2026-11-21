@@ -2,7 +2,7 @@ name: Homologacao
 
 permissions:
   contents: write
-  
+
 on:
   push:
     branches: [homologacao]
@@ -27,6 +27,7 @@ jobs:
         run: |
           $exe = "bin\Release\win-x64\publish\SKY LAND.exe"
           if (-not (Test-Path $exe)) { $exe = (Get-ChildItem -Recurse -Filter "SKY LAND.exe" bin\Release | Select-Object -First 1).FullName }
-          Copy-Item $exe "HML-Setup.exe" -Force
+          Copy-Item $exe "SKY LAND.exe" -Force
+          Copy-Item $exe "SKY LAND Setup.exe" -Force
           gh release delete homologacao --yes --cleanup-tag 2>$null
-          gh release create homologacao "HML-Setup.exe" --title "SKY LAND - Homologacao" --notes "Versao de testes para validacao. Nao instalar em producao."
+          gh release create homologacao "SKY LAND.exe" "SKY LAND Setup.exe" --title "SKY LAND - Homologacao" --notes "Versao de testes para validacao. Nao instalar em producao."
