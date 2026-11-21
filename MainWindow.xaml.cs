@@ -51,6 +51,8 @@ namespace SkyLand
 
             ApplyChrome();
 
+            VersionFooter.Text = "Versão " + App.VersionDisplay + "  ·  x64";
+
             SetWindowIcon();
 
             StateChanged += (_, _) => OnChromeStateChanged();
