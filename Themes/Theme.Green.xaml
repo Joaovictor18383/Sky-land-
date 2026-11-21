@@ -4,46 +4,47 @@
 
     <!-- ================ TEMA: VERDE ================ -->
 
-    <LinearGradientBrush x:Key="Brush.Window.BackgroundGradient" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#0A1C12" Offset="0" />
-        <GradientStop Color="#0B2818" Offset="0.45" />
-        <GradientStop Color="#0C341E" Offset="1" />
+    <LinearGradientBrush x:Key="Brush.Window.BackgroundGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#071510" Offset="0" />
+        <GradientStop Color="#0A1F17" Offset="0.5" />
+        <GradientStop Color="#0D2B1E" Offset="1" />
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="Brush.Sidebar.Background" Color="#0D3522" />
+    <SolidColorBrush x:Key="Brush.Sidebar.Background" Color="#081C14" />
 
-    <SolidColorBrush x:Key="Brush.Surface" Color="#164028" />
-    <SolidColorBrush x:Key="Brush.Surface.Hover" Color="#1E5532" />
-    <SolidColorBrush x:Key="Brush.Surface.Solid2" Color="#11251C" />
+    <SolidColorBrush x:Key="Brush.Surface" Color="#0F2C1F" />
+    <SolidColorBrush x:Key="Brush.Surface.Hover" Color="#153E2B" />
+    <SolidColorBrush x:Key="Brush.Surface.Solid2" Color="#0B2018" />
 
-    <SolidColorBrush x:Key="Brush.Stroke" Color="#2D6C3C" />
-    <SolidColorBrush x:Key="Brush.Stroke.Hover" Color="#3D7C4C" />
-    <SolidColorBrush x:Key="Brush.Stroke.Subtle" Color="#1E5028" />
+    <SolidColorBrush x:Key="Brush.Stroke" Color="#1F5B3D" />
+    <SolidColorBrush x:Key="Brush.Stroke.Hover" Color="#2E7A52" />
+    <SolidColorBrush x:Key="Brush.Stroke.Subtle" Color="#184A32" />
 
-    <SolidColorBrush x:Key="Brush.Bar" Color="#193824" />
-    <SolidColorBrush x:Key="Brush.Thumb" Color="#2D6C3C" />
+    <SolidColorBrush x:Key="Brush.Bar" Color="#184A32" />
+    <SolidColorBrush x:Key="Brush.Thumb" Color="#2E7A52" />
 
-    <LinearGradientBrush x:Key="Brush.Card.Hover" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1A4D2E" Offset="0" />
-        <GradientStop Color="#225732" Offset="1" />
+    <LinearGradientBrush x:Key="Brush.Card.Hover" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#15402C" Offset="0" />
+        <GradientStop Color="#1C5539" Offset="1" />
     </LinearGradientBrush>
 
     <!-- ================ TEXTO ================ -->
 
-    <SolidColorBrush x:Key="Brush.Text.Primary" Color="#E8F5E8" />
-    <SolidColorBrush x:Key="Brush.Text.Secondary" Color="#A8D4A8" />
-    <SolidColorBrush x:Key="Brush.Text.Dim" Color="#6BA76B" />
+    <SolidColorBrush x:Key="Brush.Text.Primary" Color="#ECFAF3" />
+    <SolidColorBrush x:Key="Brush.Text.Secondary" Color="#A5D6BF" />
+    <SolidColorBrush x:Key="Brush.Text.Dim" Color="#639A7E" />
 
     <!-- ================ ACENTOS ================ -->
 
     <SolidColorBrush x:Key="Brush.Accent" Color="#10B981" />
+    <Color x:Key="Accent.Color">#10B981</Color>
     <SolidColorBrush x:Key="Brush.Accent.Bright" Color="#6EE7B7" />
     <SolidColorBrush x:Key="Brush.Accent2" Color="#34D399" />
-    <SolidColorBrush x:Key="Brush.Accent.Soft" Color="#064E3B" />
+    <SolidColorBrush x:Key="Brush.Accent.Soft" Color="#0E4A34" />
 
     <LinearGradientBrush x:Key="Brush.Accent.Gradient" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#10B981" Offset="0" />
-        <GradientStop Color="#34D399" Offset="1" />
+        <GradientStop Color="#22D3EE" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Brush.Hero" StartPoint="0,0" EndPoint="1,0">
@@ -54,19 +55,19 @@
     <!-- ================ ESTADOS ================ -->
 
     <SolidColorBrush x:Key="Brush.Success" Color="#34D399" />
-    <SolidColorBrush x:Key="Brush.Success.Soft" Color="#1F34D399" />
+    <SolidColorBrush x:Key="Brush.Success.Soft" Color="#14332A" />
     <SolidColorBrush x:Key="Brush.Success.Text" Color="#A7F3D0" />
 
     <SolidColorBrush x:Key="Brush.Warning" Color="#FBBF24" />
-    <SolidColorBrush x:Key="Brush.Warning.Soft" Color="#1FFBBF24" />
+    <SolidColorBrush x:Key="Brush.Warning.Soft" Color="#33290F" />
     <SolidColorBrush x:Key="Brush.Warning.Text" Color="#FDE68A" />
 
     <SolidColorBrush x:Key="Brush.Danger" Color="#F97066" />
-    <SolidColorBrush x:Key="Brush.Danger.Soft" Color="#1FF97066" />
+    <SolidColorBrush x:Key="Brush.Danger.Soft" Color="#331A18" />
     <SolidColorBrush x:Key="Brush.Danger.Text" Color="#FDA4A4" />
 
     <SolidColorBrush x:Key="Brush.Info" Color="#60A5FA" />
-    <SolidColorBrush x:Key="Brush.Info.Soft" Color="#1F60A5FA" />
+    <SolidColorBrush x:Key="Brush.Info.Soft" Color="#14273F" />
     <SolidColorBrush x:Key="Brush.Info.Text" Color="#BFDBFE" />
 
 </ResourceDictionary>
