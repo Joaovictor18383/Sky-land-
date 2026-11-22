@@ -105,6 +105,29 @@ namespace SkyLand
             return msg;
         }
 
+        /// <summary>Verifica se o arquivo é um executável Windows válido (assinatura MZ + cabeçalho PE).</summary>
+        public static bool IsValidExe(string path)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(path) || !File.Exists(path)) return false;
+                using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+                if (fs.Length < 64) return false;
+                var mz = new byte[2];
+                if (fs.Read(mz, 0, 2) != 2 || mz[0] != (byte)'M' || mz[1] != (byte)'Z') return false;
+                fs.Seek(0x3C, SeekOrigin.Begin);
+                var peOff = new byte[4];
+                if (fs.Read(peOff, 0, 4) != 4) return false;
+                int offset = BitConverter.ToInt32(peOff, 0);
+                if (offset <= 0 || offset > fs.Length - 4) return false;
+                fs.Seek(offset, SeekOrigin.Begin);
+                var sig = new byte[4];
+                if (fs.Read(sig, 0, 4) != 4) return false;
+                return sig[0] == (byte)'P' && sig[1] == (byte)'E' && sig[2] == 0 && sig[3] == 0;
+            }
+            catch { return false; }
+        }
+
         /// <summary>Encurta textos longos (notas de release, por exemplo).</summary>
         public static string TrimText(string text, int max)
         {
