@@ -34,8 +34,12 @@ namespace SkyLand
                 using var process = Process.Start(startInfo);
                 if (process == null) return false;
 
+                if (!process.WaitForExit(15000))
+                {
+                    try { process.Kill(true); } catch { }
+                    return false;
+                }
                 var output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
 
                 return output.Contains("Microsoft.WindowsDesktop.App") && output.Contains("6.0");
             }
@@ -61,8 +65,12 @@ namespace SkyLand
                 using var process = Process.Start(startInfo);
                 if (process == null) return false;
 
+                if (!process.WaitForExit(15000))
+                {
+                    try { process.Kill(true); } catch { }
+                    return false;
+                }
                 var output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
 
                 return output.Contains("Microsoft.WindowsDesktop.App") && output.Contains("8.0");
             }
