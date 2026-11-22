@@ -30,4 +30,4 @@ jobs:
           Copy-Item $exe "SKY LAND.exe" -Force
           Copy-Item $exe "SKY LAND Setup.exe" -Force
           gh release delete homologacao --yes --cleanup-tag 2>$null
-          gh release create homologacao "SKY LAND.exe" "SKY LAND Setup.exe" --title "SKY LAND - Homologacao" --notes "Versao de testes para validacao. Nao instalar em producao."
+          gh release create homologacao "SKY LAND.exe" "SKY LAND Setup.exe" --target homologacao --title "SKY LAND - Homologacao" --notes "Versao de testes para validacao. Nao instalar em producao."
