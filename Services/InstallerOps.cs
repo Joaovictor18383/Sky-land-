@@ -40,6 +40,12 @@ namespace SkyLand
                 return false;
             }
 
+            return await InstallWebView2CoreAsync(vm, ct);
+        }
+
+        /// <summary>Download + instalação do WebView2 sem confirmação (uso interno em fluxos já autorizados).</summary>
+        private static async Task<bool> InstallWebView2CoreAsync(OpVM vm, CancellationToken ct)
+        {
             var installer = Path.Combine(AppPaths.Temp, "MicrosoftEdgeWebView2.exe");
             vm.SetStatus("Baixando WebView2…");
             await DownloadService.DownloadAsync(WebView2Url, installer,
@@ -96,6 +102,12 @@ namespace SkyLand
                 return false;
             }
 
+            return await InstallDotNetCoreAsync(vm, ct, major);
+        }
+
+        /// <summary>Download + instalação do .NET Desktop Runtime sem confirmação (uso interno).</summary>
+        private static async Task<bool> InstallDotNetCoreAsync(OpVM vm, CancellationToken ct, string major)
+        {
             var url = major == "6" ? DotNet6Url : DotNet8Url;
             var installer = Path.Combine(AppPaths.Temp, "dotnet" + major + "_desktop.exe");
 
@@ -151,6 +163,12 @@ namespace SkyLand
                 return false;
             }
 
+            return await InstallVcCoreAsync(vm, ct, arch);
+        }
+
+        /// <summary>Download + instalação do Visual C++ sem confirmação (uso interno).</summary>
+        private static async Task<bool> InstallVcCoreAsync(OpVM vm, CancellationToken ct, string arch)
+        {
             var url = arch == "x64" ? Vc64Url : Vc86Url;
             var installer = Path.Combine(AppPaths.Temp, "vc_redist." + arch + ".exe");
 
@@ -204,21 +222,40 @@ namespace SkyLand
                 return;
             }
 
-            var steps = new (string, Func<CancellationToken, Task<bool>>)[]
+            // O consentimento único acima já cobre as 4 dependências — aqui só verificamos
+            // e instalamos as que faltam, sem abrir outro diálogo por item.
+            var steps = new (string name, Func<bool> isInstalled, Func<CancellationToken, Task<bool>> run)[]
             {
-                (".NET Desktop Runtime 8", t => InstallDotNetRuntimeAsync(vm, shell, t, "8")),
-                ("Visual C++ x64", t => InstallVcAsync(vm, shell, t, "x64")),
-                ("Visual C++ x86", t => InstallVcAsync(vm, shell, t, "x86")),
-                ("WebView2", t => InstallWebView2Async(vm, shell, t)),
+                (".NET Desktop Runtime 8",
+                    () => RuntimeChecks.HasWindowsDesktopRuntime("8"),
+                    t => InstallDotNetCoreAsync(vm, t, "8")),
+                ("Visual C++ x64",
+                    () => RuntimeChecks.HasVcRuntime("x64"),
+                    t => InstallVcCoreAsync(vm, t, "x64")),
+                ("Visual C++ x86",
+                    () => RuntimeChecks.HasVcRuntime("x86"),
+                    t => InstallVcCoreAsync(vm, t, "x86")),
+                ("WebView2",
+                    () => RuntimeChecks.WebView2Installed(),
+                    t => InstallWebView2CoreAsync(vm, t)),
             };
 
             int index = 0;
             var results = new List<string>();
-            foreach (var (name, run) in steps)
+            foreach (var (name, isInstalled, run) in steps)
             {
                 index++;
-                vm.SetBusy("[" + index + "/4] Verificando e instalando: " + name + "…");
+                vm.SetBusy("[" + index + "/4] Verificando: " + name + "…");
                 ActivityService.Add(ActivityKind.Info, "Dependência: verificando " + name);
+
+                if (isInstalled())
+                {
+                    results.Add("OK — " + name + " (já instalado)");
+                    ActivityService.Add(ActivityKind.Info, "Dependência: " + name + " já instalada");
+                    continue;
+                }
+
+                vm.SetStatus("Instalando " + name + "…");
                 var done = await run(ct);
                 results.Add((done ? "OK" : "Pendentes") + " — " + name);
             }
