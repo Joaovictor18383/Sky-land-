@@ -122,6 +122,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="52" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <!-- Barra de título -->
@@ -158,13 +159,166 @@
 
                     <!-- Páginas -->
                     <ContentControl Grid.Row="1" x:Name="PageHost" Focusable="False" />
+
+                    <!-- ================= PAINEL DE OPERAÇÕES ================= -->
+                    <Border x:Name="OpsPanel" Grid.Row="2"
+                            Margin="26,0,26,14" Padding="16,13"
+                            CornerRadius="14"
+                            Background="{DynamicResource Brush.Surface.Solid2}"
+                            BorderBrush="{DynamicResource Brush.Stroke}"
+                            BorderThickness="1">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsVisible}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="24" ShadowDepth="6"
+                                              Direction="270" Opacity="0.35" />
+                        </Border.Effect>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Cabeçalho: ícone + textos + porcentagem -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border x:Name="OpsIcon" Width="36" Height="36" CornerRadius="10"
+                                        Background="{DynamicResource Brush.Accent.Soft}"
+                                        VerticalAlignment="Center">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSuccess}" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource Brush.Success.Soft}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsWarning}" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource Brush.Warning.Soft}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsError}" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource Brush.Danger.Soft}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <TextBlock x:Name="OpsIconGlyph" Text="&#xE896;"
+                                               FontFamily="{StaticResource Font.Icons}"
+                                               FontSize="15"
+                                               Foreground="{DynamicResource Brush.Accent.Bright}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsSuccess}" Value="True">
+                                                        <Setter Property="Text" Value="&#xE73E;" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource Brush.Success}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsWarning}" Value="True">
+                                                        <Setter Property="Text" Value="&#xE7BA;" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource Brush.Warning}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsError}" Value="True">
+                                                        <Setter Property="Text" Value="&#xEA39;" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource Brush.Danger}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Border>
+
+                                <StackPanel Grid.Column="1" Margin="12,0,14,0" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding TitleText}" FontSize="12.5" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource Brush.Text.Primary}"
+                                               TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Text="{Binding HeadlineText}" FontSize="11.5"
+                                               Foreground="{DynamicResource Brush.Text.Secondary}"
+                                               TextTrimming="CharacterEllipsis" Margin="0,2,0,0" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding PercentText}" FontSize="15" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource Brush.Text.Primary}"
+                                               HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding SpeedText}" FontSize="10" Style="{StaticResource T.Small}"
+                                               HorizontalAlignment="Right" Margin="0,1,0,0" />
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Barra de progresso real -->
+                            <ProgressBar Grid.Row="1" Style="{StaticResource SlimProgress}"
+                                         Height="6" Margin="0,11,0,0"
+                                         Minimum="0" Maximum="100"
+                                         Value="{Binding Progress, Mode=OneWay}"
+                                         IsIndeterminate="{Binding IsIndeterminate}" />
+
+                            <!-- Rodapé: detalhe + ações -->
+                            <Grid Grid.Row="2" Margin="0,9,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding DetailText}" FontSize="10.5"
+                                           Foreground="{DynamicResource Brush.Text.Dim}"
+                                           VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                            HorizontalAlignment="Right">
+                                    <Button Content="Cancelar" Command="{Binding CancelCommand}"
+                                            Padding="14,5" FontSize="11"
+                                            Margin="0,0,8,0" VerticalAlignment="Center">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource BtnGhost}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ShowCancel}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                    <Button Content="Abrir pasta" Command="{Binding OpenFolderCommand}"
+                                            Padding="14,5" FontSize="11"
+                                            Margin="0,0,8,0" VerticalAlignment="Center">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource BtnGhost}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding HasTarget}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                    <Button Style="{StaticResource WinBtn}" Content="&#xE711;"
+                                            Command="{Binding DismissCommand}" Width="30" Height="26"
+                                            VerticalAlignment="Center" Opacity="0.75" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
                 </Grid>
 
                 <!-- ================= TOASTS ================= -->
                 <StackPanel x:Name="ToastHost"
                             Grid.Column="1"
-                            HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                            Margin="0,0,18,18" />
+                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                            Margin="0,62,18,0" />
 
                 <!-- ================= DIÁLOGOS ================= -->
                 <Grid x:Name="DialogOverlay" Grid.Column="0" Grid.ColumnSpan="2"
