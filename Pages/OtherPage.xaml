@@ -118,7 +118,7 @@
                     <controls:DownloadCard.Actions>
                         <StackPanel Orientation="Horizontal">
                             <Button Style="{StaticResource BtnPrimary}"
-                                    Content="Baixar RAM" Click="OnRamClick" />
+                                    Content="Baixar Account Manager" Click="OnRamClick" />
                         </StackPanel>
                     </controls:DownloadCard.Actions>
                 </controls:DownloadCard>
