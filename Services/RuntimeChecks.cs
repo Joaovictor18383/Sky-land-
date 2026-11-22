@@ -51,8 +51,14 @@ namespace SkyLand
                 };
                 using var p = Process.Start(psi);
                 if (p == null) return false;
+
+                // Espera primeiro (com timeout) — ReadToEnd antes disso poderia bloquear para sempre.
+                if (!p.WaitForExit(15000))
+                {
+                    try { p.Kill(true); } catch { }
+                    return false;
+                }
                 var output = p.StandardOutput.ReadToEnd();
-                p.WaitForExit(15000);
 
                 foreach (var line in output.Split('\n'))
                 {
