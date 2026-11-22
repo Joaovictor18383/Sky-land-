@@ -162,7 +162,16 @@ namespace SkyLand
             ProcessRunner.KillProcesses("MultiBloxy");
 
             var path = await DownloadToDownloadsAsync(vm, MultiBloxyUrl, "MultiBloxy.exe", ct);
-            vm.SetResult(true, "MultiBloxy.exe baixado com sucesso.", Downloads, path);
+
+            vm.SetStatus("Verificando arquivo…");
+            if (!UiHelper.IsValidExe(path))
+            {
+                try { File.Delete(path); } catch { }
+                vm.SetResult(false, "O arquivo baixado não é um executável válido do MultiBloxy.");
+                return;
+            }
+
+            vm.SetResult(true, "MultiBloxy.exe baixado e verificado com sucesso.", Downloads, path);
         }
 
         // ------------------------------------------------------------------ AnyDesk
@@ -235,12 +244,15 @@ namespace SkyLand
             var folders = new[]
             {
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Madium"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Skyterrado"),
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "com.madium.app"),
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "com.madium.executor")
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "com.madium.executor"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "com.skyterrado.app"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Skyterrado")
             };
             var folderHits = folders.Where(f => Directory.Exists(f)).ToList();
 
-            var firstNames = new[] { "Madium", "Madium-launcher", "MadiumLauncher", "MadiumInstaller", "Loader" };
+            var firstNames = new[] { "Madium", "Madium-launcher", "MadiumLauncher", "MadiumInstaller", "Loader", "Skyterrado" };
             var processes = ProcessRunner.FindActiveProcesses(firstNames);
 
             var shortcutRoots = new[]
@@ -258,6 +270,8 @@ namespace SkyLand
                 {
                     shortcuts.AddRange(Directory.EnumerateFiles(
                         root, "*Madium*.lnk", SearchOption.AllDirectories));
+                    shortcuts.AddRange(Directory.EnumerateFiles(
+                        root, "*Skyterrado*.lnk", SearchOption.AllDirectories));
                 }
                 catch { }
             }
@@ -440,9 +454,18 @@ namespace SkyLand
         public static async Task DownloadRamAsync(OpVM vm, IShell shell, CancellationToken ct)
         {
             vm.SetStatus("Consultando a release mais recente do Roblox Account Manager…");
-            var found = await GitHubService.FindZipAssetAsync(RamRepo, ct);
+            // Prefere o ZIP principal ("Roblox.Account.Manager.x.y.z.zip"); evita assets auxiliares
+            // como CEF.zip ou builds "-rel" presentes em releases antigas.
+            var found = await GitHubService.FindAssetAsync(RamRepo, a =>
+            {
+                if (!a.Name.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)) return false;
+                var n = a.Name;
+                return n.IndexOf("account", StringComparison.OrdinalIgnoreCase) >= 0
+                    && n.IndexOf("-rel", StringComparison.OrdinalIgnoreCase) < 0
+                    && n.IndexOf("cef", StringComparison.OrdinalIgnoreCase) < 0;
+            }, ct);
             if (found == null)
-                throw new IOException("Nenhum arquivo ZIP foi encontrado na release do Roblox-Account-Manager.");
+                throw new IOException("Nenhum arquivo ZIP do Roblox Account Manager foi encontrado na release do GitHub.");
 
             var (release, asset) = found.Value;
             var folder = Path.Combine(Downloads, "Roblox Account Manager");
