@@ -39,6 +39,7 @@ namespace SkyLand
         };
 
         private readonly Dictionary<string, UserControl> _pages = new();
+        private readonly OpsMonitor _opsMonitor = new();
         private bool _navSuppress;
         private TaskCompletionSource<bool> _dialogTcs;
 
@@ -51,6 +52,7 @@ namespace SkyLand
 
             ApplyChrome();
 
+            OpsPanel.DataContext = _opsMonitor;
             VersionFooter.Text = "Versão " + App.VersionDisplay + "  ·  x64";
 
             SetWindowIcon();
