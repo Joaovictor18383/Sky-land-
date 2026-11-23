@@ -170,8 +170,8 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="bg" Property="Background" Value="{DynamicResource Brush.Surface.Hover}" />
-                            <Setter TargetName="bg" Property="BorderBrush" Value="{DynamicResource Brush.Stroke.Hover}" />
+                            <Setter TargetName="bg" Property="Background" Value="#2E0E34" />
+                            <Setter TargetName="bg" Property="BorderBrush" Value="#582156" />
                             <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Primary}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
@@ -346,7 +346,7 @@
                                 <Condition Property="IsChecked" Value="False" />
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="bg" Property="Background" Value="{DynamicResource Brush.Surface.Hover}" />
+                            <Setter TargetName="bg" Property="Background" Value="#2E0E34" />
                             <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Primary}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
@@ -391,9 +391,9 @@
 
     <!-- ===== Progresso: gradiente indeterminado ===== -->
     <LinearGradientBrush x:Key="Brush.Indeterminate.Gradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#FF8CC6" Offset="0" />
-        <GradientStop Color="#FF4DA6" Offset="0.45" />
-        <GradientStop Color="#FFB3D9" Offset="0.9" />
+        <GradientStop Color="#D900A8" Offset="0" />
+        <GradientStop Color="#8B17C0" Offset="0.45" />
+        <GradientStop Color="#B020E8" Offset="0.9" />
     </LinearGradientBrush>
 
     <Style x:Key="SlimProgress" TargetType="ProgressBar">
@@ -462,7 +462,7 @@
                                     BorderBrush="{DynamicResource Brush.Stroke.Hover}"
                                     BorderThickness="1" />
                             <Border x:Name="knob" Width="17" Height="17"
-                                    CornerRadius="9" Background="#F0D9E5"
+                                    CornerRadius="9" Background="{DynamicResource Brush.Metallic}"
                                     HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Margin="4,0,0,0">
                                 <Border.RenderTransform>
