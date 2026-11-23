@@ -53,10 +53,6 @@
                             <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
                                 <TextBlock Text="SKY LAND" FontSize="17" FontWeight="Bold"
                                            Foreground="{DynamicResource Brush.Text.Primary}" />
-                                <TextBlock Text="CONTROL CENTER"
-                                           FontSize="8" FontWeight="SemiBold"
-                                           Foreground="{DynamicResource Brush.Accent.Bright}"
-                                           Margin="0,2,0,0" />
                             </StackPanel>
                         </Grid>
 
