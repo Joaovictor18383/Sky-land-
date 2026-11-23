@@ -4,10 +4,79 @@
              xmlns:controls="clr-namespace:SkyLand.Controls">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,24,32,32">
+            <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,26,32,36">
 
-                <!-- ========= ATIVIDADES RÁPIDAS ========= -->
-                <TextBlock Text="ATIVIDADES RÁPIDAS" Style="{StaticResource T.SectionHead}" Margin="0,0,0,12" />
+                <!-- CABEÇALHO PRINCIPAL -->
+                <Border CornerRadius="20"
+                        Background="{DynamicResource Brush.Surface.Solid2}"
+                        BorderBrush="{DynamicResource Brush.Stroke}"
+                        BorderThickness="1"
+                        Padding="26"
+                        Margin="0,0,0,28">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="142" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="PAINEL PRINCIPAL"
+                                       Style="{StaticResource T.SectionHead}"
+                                       Margin="0,0,0,10" />
+                            <TextBlock Text="Bem-vindo ao SKY LAND"
+                                       FontSize="29"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource Brush.Text.Primary}" />
+                            <TextBlock Text="Seu espaço para baixar, atualizar e gerenciar seus executores e ferramentas."
+                                       FontSize="13.5"
+                                       Foreground="{DynamicResource Brush.Text.Secondary}"
+                                       TextWrapping="Wrap"
+                                       Margin="0,8,0,0" />
+                            <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                                <Border CornerRadius="9"
+                                        Background="{DynamicResource Brush.Accent.Soft}"
+                                        Padding="11,7">
+                                    <TextBlock Text="CENTRAL DE CONTROLE"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource Brush.Accent.Bright}" />
+                                </Border>
+                                <TextBlock Text="Windows x64"
+                                           FontSize="11"
+                                           Foreground="{DynamicResource Brush.Text.Dim}"
+                                           VerticalAlignment="Center"
+                                           Margin="12,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Grid Grid.Column="1" Width="124" Height="124"
+                              HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Ellipse Fill="#188B17C0" />
+                            <Border Width="98" Height="98"
+                                    CornerRadius="28"
+                                    Background="{DynamicResource Brush.Accent.Soft}"
+                                    BorderBrush="{DynamicResource Brush.Stroke.Hover}"
+                                    BorderThickness="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                <Image Width="76" Height="76"
+                                       Source="pack://application:,,,/Assets/emblem.png"
+                                       Stretch="Uniform"
+                                       RenderOptions.BitmapScalingMode="HighQuality" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <!-- ATALHOS -->
+                <StackPanel Margin="0,0,0,14">
+                    <TextBlock Text="ACESSO RÁPIDO"
+                               Style="{StaticResource T.SectionHead}"
+                               Margin="0,0,0,5" />
+                    <TextBlock Text="Abra seus executores e ferramentas mais usados."
+                               Style="{StaticResource T.CardSubtitle}" />
+                </StackPanel>
+
                 <UniformGrid Columns="3" HorizontalAlignment="Stretch">
                     <controls:QuickTile x:Name="TilePotassium" Title="Potassium"
                                         Subtitle="Baixar Potassium.zip — executor oficial."
