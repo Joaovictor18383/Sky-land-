@@ -6,41 +6,32 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,26,32,32">
 
-                <Border CornerRadius="18" Padding="1" Margin="0,0,0,24"
-                        Background="{DynamicResource Brush.Metallic}">
-                    <Border CornerRadius="17" Padding="30,24"
-                            Background="{DynamicResource Brush.Surface}"
-                            BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
-                            BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel VerticalAlignment="Center" MaxWidth="600">
-                                <Border Style="{StaticResource Chip}" HorizontalAlignment="Left" Margin="0,0,0,14">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Ellipse Width="6" Height="6" Fill="{DynamicResource Brush.Success}" VerticalAlignment="Center" />
-                                        <TextBlock Text="CENTRAL DE CONTROLE" Style="{StaticResource T.Eyebrow}" Margin="8,0,0,0" />
-                                    </StackPanel>
-                                </Border>
-                                <TextBlock FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap"
-                                           Foreground="{DynamicResource Brush.Text.Primary}">
-                                    <Run Text="Tudo o que você precisa." />
-                                    <LineBreak />
-                                    <Run Text="Em um só lugar." Foreground="{DynamicResource Brush.Metallic}" />
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource T.PageSubtitle}" MaxWidth="500"
-                                           HorizontalAlignment="Left" Margin="0,10,0,0"
-                                           Text="Baixe executores, instale dependências e gerencie suas ferramentas com segurança e praticidade." />
-                            </StackPanel>
-                            <Image Grid.Column="1" Width="112" Height="112"
-                                   Source="pack://application:,,,/Assets/logo.png"
-                                   Stretch="Uniform"
-                                   RenderOptions.BitmapScalingMode="HighQuality"
-                                   Margin="28,0,0,0" VerticalAlignment="Center" />
-                        </Grid>
-                    </Border>
+                <Border CornerRadius="16" Padding="24,20"
+                        Background="{DynamicResource Brush.Surface}"
+                        BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
+                        BorderThickness="1" Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel VerticalAlignment="Center" MaxWidth="580">
+                            <TextBlock FontSize="28" FontWeight="SemiBold" TextWrapping="Wrap"
+                                       Foreground="{DynamicResource Brush.Text.Primary}">
+                                <Run Text="Tudo o que você precisa." />
+                                <LineBreak />
+                                <Run Text="Em um só lugar." Foreground="{DynamicResource Brush.Metallic}" />
+                            </TextBlock>
+                            <TextBlock Style="{StaticResource T.PageSubtitle}" MaxWidth="480"
+                                       HorizontalAlignment="Left" Margin="0,8,0,0"
+                                       Text="Baixe executores, instale dependências e gerencie suas ferramentas." />
+                        </StackPanel>
+                        <Image Grid.Column="1" Width="96" Height="96"
+                               Source="pack://application:,,,/Assets/logo.png"
+                               Stretch="Uniform"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Margin="24,0,0,0" VerticalAlignment="Center" />
+                    </Grid>
                 </Border>
 
                 <Grid Margin="0,0,0,14">
