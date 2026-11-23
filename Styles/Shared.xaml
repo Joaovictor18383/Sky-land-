@@ -264,16 +264,16 @@
                 <ControlTemplate TargetType="RadioButton">
                     <Border x:Name="bg" CornerRadius="12" Background="Transparent">
                         <Grid Margin="12,9,10,9">
-                            <Border x:Name="activeMarker" Width="3" Height="19"
-                                    CornerRadius="2"
-                                    Background="{DynamicResource Brush.Accent}"
-                                    HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Margin="-12,0,0,0" Opacity="0" />
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="24" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
+                            <Border x:Name="activeMarker" Width="3" Height="19"
+                                    CornerRadius="2"
+                                    Background="{DynamicResource Brush.Accent}"
+                                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Margin="-12,0,0,0" Opacity="0" />
                             <TextBlock x:Name="iconGlyph"
                                        FontFamily="{StaticResource Font.Icons}"
                                        FontSize="15"
