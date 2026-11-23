@@ -10,46 +10,6 @@
                            Text="Configure a pasta de downloads e gerencie atualizações do SKY LAND."
                            Margin="0,8,0,28" />
 
-                <!-- ===== TEMA ===== -->
-                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
-                    <StackPanel>
-                        <TextBlock Text="Tema do aplicativo" Style="{StaticResource T.CardTitle}" />
-                        <TextBlock Style="{StaticResource T.CardSubtitle}"
-                                   Text="Escolha a cor do tema para personalizar a aparência do SKY LAND."
-                                   Margin="0,3,0,12" />
-                        <WrapPanel>
-                            <Button x:Name="BtnThemeBlack" Style="{StaticResource BtnGhost}"
-                                    Click="OnThemeBlackClick" Margin="0,0,8,8" Padding="12,8">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="11" Height="11" Fill="#8B5CF6" VerticalAlignment="Center" />
-                                    <TextBlock Text="Preto" Margin="8,0,0,0" VerticalAlignment="Center" />
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="BtnThemeBlue" Style="{StaticResource BtnGhost}"
-                                    Click="OnThemeBlueClick" Margin="0,0,8,8" Padding="12,8">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="11" Height="11" Fill="#3B82F6" VerticalAlignment="Center" />
-                                    <TextBlock Text="Azul" Margin="8,0,0,0" VerticalAlignment="Center" />
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="BtnThemeGreen" Style="{StaticResource BtnGhost}"
-                                    Click="OnThemeGreenClick" Margin="0,0,8,8" Padding="12,8">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="11" Height="11" Fill="#10B981" VerticalAlignment="Center" />
-                                    <TextBlock Text="Verde" Margin="8,0,0,0" VerticalAlignment="Center" />
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="BtnThemeRed" Style="{StaticResource BtnGhost}"
-                                    Click="OnThemeRedClick" Margin="0,0,8,8" Padding="12,8">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="11" Height="11" Fill="#F43F5E" VerticalAlignment="Center" />
-                                    <TextBlock Text="Vermelho" Margin="8,0,0,0" VerticalAlignment="Center" />
-                                </StackPanel>
-                            </Button>
-                        </WrapPanel>
-                    </StackPanel>
-                </Border>
-
                 <!-- ===== DOWNLOADS ===== -->
                 <Border Style="{StaticResource Card}" Margin="0,0,0,14">
                     <StackPanel>
