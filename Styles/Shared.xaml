@@ -283,27 +283,33 @@
         <Setter Property="FontSize" Value="13" />
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Margin" Value="6,2" />
+        <Setter Property="Margin" Value="4,3" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
                     <Border x:Name="bg" CornerRadius="10" Background="Transparent">
-                        <Grid Margin="12,9,12,9">
+                        <Grid Margin="10,8,12,8">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock x:Name="iconGlyph" Grid.Column="0"
+                            <Border x:Name="selBar" Grid.Column="0" Width="3" Height="18"
+                                    CornerRadius="2" VerticalAlignment="Center"
+                                    Margin="0,0,11,0" Visibility="Collapsed"
+                                    Background="{DynamicResource Brush.Accent.Gradient}" />
+
+                            <TextBlock x:Name="iconGlyph" Grid.Column="1"
                                        FontFamily="{StaticResource Font.Icons}"
                                        FontSize="15"
                                        Text="{TemplateBinding Tag}"
                                        VerticalAlignment="Center"
                                        Visibility="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GlyphVis}}" />
 
-                            <Border x:Name="iconLetter" Grid.Column="0" Width="20" Height="20"
+                            <Border x:Name="iconLetter" Grid.Column="1" Width="20" Height="20"
                                     CornerRadius="7"
                                     Background="Transparent"
                                     Visibility="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource LetterVis}}">
@@ -313,7 +319,7 @@
                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
 
-                            <Image x:Name="iconArt" Grid.Column="0"
+                            <Image x:Name="iconArt" Grid.Column="1"
                                    Width="22" Height="22"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Source="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NameArt}}"
@@ -321,7 +327,7 @@
                                    VerticalAlignment="Center" HorizontalAlignment="Center" />
 
                             <TextBlock x:Name="label"
-                                       Grid.Column="2"
+                                       Grid.Column="3"
                                        Margin="11,0,0,0"
                                        Text="{TemplateBinding Content}"
                                        VerticalAlignment="Center" />
@@ -330,6 +336,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="bg" Property="Background" Value="{DynamicResource Brush.Accent.Soft}" />
+                            <Setter TargetName="selBar" Property="Visibility" Value="Visible" />
                             <Setter TargetName="iconGlyph" Property="Foreground" Value="{DynamicResource Brush.Accent.Bright}" />
                             <Setter TargetName="label" Property="Foreground" Value="{DynamicResource Brush.Text.Primary}" />
                             <Setter TargetName="label" Property="FontWeight" Value="SemiBold" />
