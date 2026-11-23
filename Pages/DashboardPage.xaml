@@ -7,7 +7,7 @@
             <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,26,32,32">
 
                 <Border CornerRadius="18" Padding="1" Margin="0,0,0,24"
-                        Background="{DynamicResource Brush.Accent.Gradient}">
+                        Background="{DynamicResource Brush.Metallic}">
                     <Border CornerRadius="17" Padding="30,24"
                             Background="{DynamicResource Brush.Surface}"
                             BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
@@ -28,7 +28,7 @@
                                            Foreground="{DynamicResource Brush.Text.Primary}">
                                     <Run Text="Tudo o que você precisa." />
                                     <LineBreak />
-                                    <Run Text="Em um só lugar." Foreground="{DynamicResource Brush.Hero}" />
+                                    <Run Text="Em um só lugar." Foreground="{DynamicResource Brush.Metallic}" />
                                 </TextBlock>
                                 <TextBlock Style="{StaticResource T.PageSubtitle}" MaxWidth="500"
                                            HorizontalAlignment="Left" Margin="0,10,0,0"
