@@ -12,14 +12,11 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Arte incorporada (Potassium / Madium / Real) — em destaque -->
-                <Border x:Name="ArtWrap" Width="80" Height="80"
+                <Border x:Name="ArtWrap" Width="76" Height="76"
                         VerticalAlignment="Center"
                         MouseEnter="ArtWrap_MouseEnter" MouseLeave="ArtWrap_MouseLeave"
                         Visibility="{Binding ArtUrl, Converter={StaticResource ArtVis}}">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#8A2FB8" BlurRadius="22" ShadowDepth="5"
-                                          Direction="-90" Opacity="0.32" />
-                    </Border.Effect>
+                    
                     <Image Source="{Binding ArtUrl}" Stretch="Uniform"
                            RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>

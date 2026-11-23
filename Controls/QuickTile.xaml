@@ -5,20 +5,17 @@
             MouseLeftButtonDown="Root_MouseLeftButtonDown"
             MouseEnter="Root_MouseEnter" MouseLeave="Root_MouseLeave">
         <StackPanel>
-            <Grid Height="70">
+            <Grid Height="76">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <!-- Arte incorporada do executor (imagem arredondada própria) -->
-                <Border Width="60" Height="60"
+                <Border Width="62" Height="62"
                         VerticalAlignment="Center" HorizontalAlignment="Center"
                         Visibility="{Binding ImagePath, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource ArtVis}}">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#8B5CF6" BlurRadius="20" ShadowDepth="5"
-                                          Direction="-90" Opacity="0.35" />
-                    </Border.Effect>
+                    
                     <Image Source="{Binding ImagePath, RelativeSource={RelativeSource AncestorType=UserControl}}"
                            Stretch="Uniform" RenderTransformOrigin="0.5,0.5"
                            RenderOptions.BitmapScalingMode="HighQuality">
@@ -51,16 +48,21 @@
                                HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
 
-                <TextBlock Grid.Column="1" Text="&#xE972;"
-                           FontFamily="{StaticResource Font.Icons}"
-                           FontSize="13"
-                           Foreground="{DynamicResource Brush.Text.Dim}"
-                           HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Border Grid.Column="1" Width="29" Height="29"
+                          CornerRadius="10"
+                          Background="{DynamicResource Brush.Accent.Soft}"
+                          HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="&#xE972;"
+                               FontFamily="{StaticResource Font.Icons}"
+                               FontSize="12"
+                               Foreground="{DynamicResource Brush.Accent.Bright}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
             </Grid>
             <TextBlock Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       FontSize="14.5" FontWeight="SemiBold"
+                       FontSize="15" FontWeight="SemiBold"
                        Foreground="{DynamicResource Brush.Text.Primary}"
-                       Margin="0,12,0,0" TextTrimming="CharacterEllipsis" />
+                       Margin="0,14,0,0" TextTrimming="CharacterEllipsis" />
             <TextBlock Text="{Binding Subtitle, RelativeSource={RelativeSource AncestorType=UserControl}}"
                        Style="{StaticResource T.CardSubtitle}"
                        Margin="0,4,0,0" MaxHeight="32" />
