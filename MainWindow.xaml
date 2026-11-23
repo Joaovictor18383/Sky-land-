@@ -38,30 +38,30 @@
                         </Grid.RowDefinitions>
 
                         <!-- Logo -->
-                        <Grid Margin="20,26,18,14">
+                        <Grid Margin="22,30,20,16">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Border Width="46" Height="46" CornerRadius="14"
+                            <Border Width="44" Height="44" CornerRadius="13"
                                     Background="{DynamicResource Brush.Accent.Gradient}">
-                                <Image Width="38" Height="38" Margin="4"
+                                <Image Width="36" Height="36" Margin="4"
                                        Source="pack://application:,,,/Assets/emblem.png"
                                        Stretch="Uniform" VerticalAlignment="Center"
                                        RenderOptions.BitmapScalingMode="HighQuality" />
                             </Border>
                             <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
-                                <TextBlock Text="SKY LAND" FontSize="18" FontWeight="Bold"
+                                <TextBlock Text="SKY LAND" FontSize="17" FontWeight="Bold"
                                            Foreground="{DynamicResource Brush.Text.Primary}" />
                                 <TextBlock Text="CONTROL CENTER"
-                                           FontSize="8.5" FontWeight="SemiBold"
+                                           FontSize="8" FontWeight="SemiBold"
                                            Foreground="{DynamicResource Brush.Accent.Bright}"
                                            Margin="0,2,0,0" />
                             </StackPanel>
                         </Grid>
 
                         <!-- Navegação -->
-                        <StackPanel Grid.Row="1" Margin="10,2,10,14">
+                        <StackPanel Grid.Row="1" Margin="12,0,12,16">
                             <TextBlock Text="MENU PRINCIPAL" Style="{StaticResource T.NavSection}" />
                             <RadioButton x:Name="NavDash" Style="{StaticResource NavItem}"
                                          GroupName="Nav" Content="Início" Tag="&#xE80F;"
@@ -90,7 +90,7 @@
                         </StackPanel>
 
                         <!-- Rodapé -->
-                        <Border Grid.Row="2" Margin="16,6,16,18" Padding="12,11"
+                        <Border Grid.Row="2" Margin="16,4,16,16" Padding="12,10"
                                 CornerRadius="12"
                                 Background="{DynamicResource Brush.Surface}"
                                 BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
