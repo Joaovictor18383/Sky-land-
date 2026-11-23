@@ -44,7 +44,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Border Width="44" Height="44" CornerRadius="13"
-                                    Background="{DynamicResource Brush.Accent.Gradient}">
+                                    Background="{DynamicResource Brush.Metallic}">
                                 <Image Width="36" Height="36" Margin="4"
                                        Source="pack://application:,,,/Assets/emblem.png"
                                        Stretch="Uniform" VerticalAlignment="Center"
@@ -101,7 +101,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Border Width="30" Height="30" CornerRadius="9"
-                                        Background="{DynamicResource Brush.Accent.Gradient}">
+                                        Background="{DynamicResource Brush.Metallic}">
                                     <TextBlock Text="&#xE946;" FontFamily="{StaticResource Font.Icons}"
                                                Foreground="White"
                                                FontSize="13"
