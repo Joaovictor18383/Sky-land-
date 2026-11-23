@@ -39,10 +39,17 @@
 
                         <!-- Logo -->
                         <Grid Margin="24,28,20,20">
-                            <Image Width="48" Height="48"
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Width="42" Height="42"
                                    Source="pack://application:,,,/Assets/emblem.png"
                                    Stretch="Uniform"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                            <TextBlock Grid.Column="1" Text="SKY LAND" FontSize="16" FontWeight="Bold"
+                                       Foreground="{DynamicResource Brush.Text.Primary}"
+                                       VerticalAlignment="Center" Margin="10,0,0,0" />
                         </Grid>
 
                         <!-- Navegação -->
