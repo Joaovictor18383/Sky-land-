@@ -32,33 +32,21 @@
                         ClipToBounds="True">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="112" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!-- Logo -->
-                        <Grid Margin="22,30,20,16">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Border Width="44" Height="44" CornerRadius="13"
-                                    Background="{DynamicResource Brush.Metallic}">
-                                <Image Width="36" Height="36" Margin="4"
-                                       Source="pack://application:,,,/Assets/emblem.png"
-                                       Stretch="Uniform" VerticalAlignment="Center"
-                                       RenderOptions.BitmapScalingMode="HighQuality" />
-                            </Border>
-                            <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
-                                <TextBlock Text="SKY LAND" FontSize="17" FontWeight="Bold"
-                                           Foreground="{DynamicResource Brush.Text.Primary}" />
-                            </StackPanel>
+                        <Grid Margin="24,28,20,20">
+                            <Image Width="48" Height="48"
+                                   Source="pack://application:,,,/Assets/emblem.png"
+                                   Stretch="Uniform"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
                         </Grid>
 
                         <!-- Navegação -->
-                        <StackPanel Grid.Row="1" Margin="12,0,12,16">
-                            <TextBlock Text="MENU PRINCIPAL" Style="{StaticResource T.NavSection}" />
+                        <StackPanel Grid.Row="1" Margin="14,0,14,20">
                             <RadioButton x:Name="NavDash" Style="{StaticResource NavItem}"
                                          GroupName="Nav" Content="Início" Tag="&#xE80F;"
                                          IsChecked="True" Checked="OnNavChecked" />
@@ -75,7 +63,7 @@
                                          GroupName="Nav" Content="Outros" Tag="&#xE712;"
                                          Checked="OnNavChecked" />
 
-                            <TextBlock Text="APLICATIVO" Style="{StaticResource T.NavSection}" Margin="18,22,0,8" />
+                            <Border Height="1" Background="{DynamicResource Brush.Stroke.Subtle}" Margin="0,16,0,16" />
 
                             <RadioButton x:Name="NavSettings" Style="{StaticResource NavItem}"
                                          GroupName="Nav" Content="Configurações" Tag="&#xE713;"
@@ -86,29 +74,16 @@
                         </StackPanel>
 
                         <!-- Rodapé -->
-                        <Border Grid.Row="2" Margin="16,4,16,16" Padding="12,10"
+                        <Border Grid.Row="2" Margin="16,0,16,20" Padding="16,12"
                                 CornerRadius="12"
                                 Background="{DynamicResource Brush.Surface}"
                                 BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
                                 BorderThickness="1">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Border Width="30" Height="30" CornerRadius="9"
-                                        Background="{DynamicResource Brush.Metallic}">
-                                    <TextBlock Text="&#xE946;" FontFamily="{StaticResource Font.Icons}"
-                                               Foreground="White"
-                                               FontSize="13"
-                                               HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Border>
-                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
-                                    <TextBlock Text="SKY LAND para Windows" FontSize="11" FontWeight="SemiBold"
-                                               Foreground="{DynamicResource Brush.Text.Secondary}" />
-                                    <TextBlock x:Name="VersionFooter" Text="Versão  ·  x64" Style="{StaticResource T.Small}" Margin="0,2,0,0" />
-                                </StackPanel>
-                            </Grid>
+                            <StackPanel>
+                                <TextBlock Text="SKY LAND" FontSize="13" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource Brush.Text.Primary}" />
+                                <TextBlock x:Name="VersionFooter" Text="Versão  ·  x64" Style="{StaticResource T.Small}" Margin="0,4,0,0" />
+                            </StackPanel>
                         </Border>
                     </Grid>
                 </Border>
