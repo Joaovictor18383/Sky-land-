@@ -384,9 +384,9 @@
 
     <!-- ===== Progresso: gradiente indeterminado ===== -->
     <LinearGradientBrush x:Key="Brush.Indeterminate.Gradient" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#6366F1" Offset="0" />
-        <GradientStop Color="#8B5CF6" Offset="0.45" />
-        <GradientStop Color="#38BDF8" Offset="0.9" />
+        <GradientStop Color="#FF8CC6" Offset="0" />
+        <GradientStop Color="#FF4DA6" Offset="0.45" />
+        <GradientStop Color="#FFB3D9" Offset="0.9" />
     </LinearGradientBrush>
 
     <Style x:Key="SlimProgress" TargetType="ProgressBar">
@@ -455,7 +455,7 @@
                                     BorderBrush="{DynamicResource Brush.Stroke.Hover}"
                                     BorderThickness="1" />
                             <Border x:Name="knob" Width="17" Height="17"
-                                    CornerRadius="9" Background="#D8D8E8"
+                                    CornerRadius="9" Background="#F0D9E5"
                                     HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Margin="4,0,0,0">
                                 <Border.RenderTransform>
