@@ -102,7 +102,7 @@ namespace SkyLand
         {
             bool maximized = WindowState == WindowState.Maximized;
             RootGrid.Margin = maximized ? new Thickness(0) : new Thickness(14, 16, 14, 22);
-            RootBorder.CornerRadius = maximized ? new CornerRadius(0) : new CornerRadius(18);
+            RootBorder.CornerRadius = maximized ? new CornerRadius(0) : new CornerRadius(20);
             RootBorder.Padding = maximized ? new Thickness(2) : new Thickness(0);
         }
 
