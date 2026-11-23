@@ -20,34 +20,10 @@ namespace SkyLand.Pages
             _host = host ?? throw new ArgumentNullException(nameof(host));
 
             VersionText.Text = "SKY LAND v" + App.VersionText + "  —  Windows x64  —  sem servidor externo: só o GitHub e a WEAO";
-            SyncThemeMarks();
             SyncFolderBox();
             SyncAgentRouterBox();
             SwAutoUpdate.IsChecked = SettingsStore.Current.AutoUpdateCheck;
         }
-
-        // ==================== TEMA ====================
-
-        private void SyncThemeMarks()
-        {
-            // Carrega o tema salvo
-            LoadTheme(SettingsStore.Current.Theme ?? "Black");
-        }
-
-        private void LoadTheme(string themeName)
-        {
-            // Remove o tema atual e carrega o novo (mesma rotina usada na inicialização).
-            App.ApplyTheme(themeName);
-
-            // Salva a preferência
-            SettingsStore.Current.Theme = themeName;
-            SettingsStore.Save();
-        }
-
-        private void OnThemeBlackClick(object sender, RoutedEventArgs e) => LoadTheme("Black");
-        private void OnThemeBlueClick(object sender, RoutedEventArgs e) => LoadTheme("Blue");
-        private void OnThemeGreenClick(object sender, RoutedEventArgs e) => LoadTheme("Green");
-        private void OnThemeRedClick(object sender, RoutedEventArgs e) => LoadTheme("Red");
 
         // ==================== PASTA DE DOWNLOADS ====================
 
