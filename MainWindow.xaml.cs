@@ -619,14 +619,6 @@ namespace SkyLand
                         RenderShot(arg);
                         break;
 
-                    case "theme":
-                        var t = string.Equals(arg, "Black", StringComparison.OrdinalIgnoreCase) ? "Black" : "DeepBlue";
-                        App.ApplyTheme(t);
-                        SettingsStore.Current.Theme = t;
-                        SettingsStore.Save();
-                        ActivityService.Add(ActivityKind.Info, "Tema alterado pelo canal de automação: " + t);
-                        break;
-
                     case "run":
                         RunUiOp(arg);
                         break;
