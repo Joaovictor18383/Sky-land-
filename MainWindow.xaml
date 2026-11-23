@@ -47,10 +47,7 @@
                                    Source="pack://application:,,,/Assets/emblem.png"
                                    Stretch="Uniform" VerticalAlignment="Center"
                                    RenderOptions.BitmapScalingMode="HighQuality">
-                                <Image.Effect>
-                                    <DropShadowEffect Color="#8B5CF6" BlurRadius="16" ShadowDepth="3"
-                                                      Direction="-90" Opacity="0.4" />
-                                </Image.Effect>
+
                             </Image>
                             <StackPanel Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center">
                                 <TextBlock Text="SKY LAND" FontSize="21" FontWeight="Bold"
@@ -112,14 +109,14 @@
 
                     <!-- Barra de título -->
                     <Grid Background="Transparent">
-                        <Border Grid.ColumnSpan="2"
-                                Background="{DynamicResource Brush.Sidebar.Background}"
-                                BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
-                                BorderThickness="0,0,0,1" />
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
+                        <Border Grid.ColumnSpan="2"
+                                Background="{DynamicResource Brush.Sidebar.Background}"
+                                BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
+                                BorderThickness="0,0,0,1" />
                         <TextBlock x:Name="CrumbText" Text="Início"
                                    VerticalAlignment="Center" Margin="28,0,0,0"
                                    Foreground="{DynamicResource Brush.Text.Secondary}"
