@@ -2,54 +2,62 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- ================ TEMA ÚNICO: ROSA ================ -->
+    <!-- ================ TEMA: ROXO/MAGENTA COM PRATA ================ -->
 
     <LinearGradientBrush x:Key="Brush.Window.BackgroundGradient" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#12050C" Offset="0" />
-        <GradientStop Color="#1A0A14" Offset="0.5" />
-        <GradientStop Color="#1F0B17" Offset="1" />
+        <GradientStop Color="#0D0410" Offset="0" />
+        <GradientStop Color="#100611" Offset="0.5" />
+        <GradientStop Color="#140915" Offset="1" />
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="Brush.Sidebar.Background" Color="#10040B" />
+    <SolidColorBrush x:Key="Brush.Sidebar.Background" Color="#0B040E" />
 
-    <SolidColorBrush x:Key="Brush.Surface" Color="#25101D" />
-    <SolidColorBrush x:Key="Brush.Surface.Hover" Color="#331826" />
-    <SolidColorBrush x:Key="Brush.Surface.Solid2" Color="#1D0D17" />
+    <SolidColorBrush x:Key="Brush.Surface" Color="#180C1B" />
+    <SolidColorBrush x:Key="Brush.Surface.Hover" Color="#241026" />
+    <SolidColorBrush x:Key="Brush.Surface.Solid2" Color="#110812" />
 
-    <SolidColorBrush x:Key="Brush.Stroke" Color="#47203C" />
-    <SolidColorBrush x:Key="Brush.Stroke.Hover" Color="#5F2B51" />
-    <SolidColorBrush x:Key="Brush.Stroke.Subtle" Color="#2E1526" />
+    <SolidColorBrush x:Key="Brush.Stroke" Color="#3B173A" />
+    <SolidColorBrush x:Key="Brush.Stroke.Hover" Color="#582156" />
+    <SolidColorBrush x:Key="Brush.Stroke.Subtle" Color="#221022" />
 
-    <SolidColorBrush x:Key="Brush.Bar" Color="#331826" />
-    <SolidColorBrush x:Key="Brush.Thumb" Color="#A03A6B" />
+    <SolidColorBrush x:Key="Brush.Bar" Color="#241026" />
+    <SolidColorBrush x:Key="Brush.Thumb" Color="#7B1E94" />
 
     <LinearGradientBrush x:Key="Brush.Card.Hover" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#38152E" Offset="0" />
-        <GradientStop Color="#481C3C" Offset="1" />
+        <GradientStop Color="#1F0E24" Offset="0" />
+        <GradientStop Color="#2C1033" Offset="1" />
     </LinearGradientBrush>
 
     <!-- ================ TEXTO ================ -->
 
-    <SolidColorBrush x:Key="Brush.Text.Primary" Color="#FDEFF6" />
-    <SolidColorBrush x:Key="Brush.Text.Secondary" Color="#D9A7C6" />
-    <SolidColorBrush x:Key="Brush.Text.Dim" Color="#8E5E80" />
+    <SolidColorBrush x:Key="Brush.Text.Primary" Color="#F4F0F5" />
+    <SolidColorBrush x:Key="Brush.Text.Secondary" Color="#A9A1AC" />
+    <SolidColorBrush x:Key="Brush.Text.Dim" Color="#6E6072" />
 
-    <!-- ================ ACENTOS ROSA ================ -->
+    <!-- ================ ACENTOS ROXO/MAGENTA ================ -->
 
-    <SolidColorBrush x:Key="Brush.Accent" Color="#FF4DA6" />
-    <Color x:Key="Accent.Color">#FF4DA6</Color>
-    <SolidColorBrush x:Key="Brush.Accent.Bright" Color="#FF8CC6" />
-    <SolidColorBrush x:Key="Brush.Accent2" Color="#FF7FB8" />
-    <SolidColorBrush x:Key="Brush.Accent.Soft" Color="#3D1430" />
+    <SolidColorBrush x:Key="Brush.Accent" Color="#D900A8" />
+    <Color x:Key="Accent.Color">#D900A8</Color>
+    <SolidColorBrush x:Key="Brush.Accent.Bright" Color="#E52CC2" />
+    <SolidColorBrush x:Key="Brush.Accent2" Color="#9C12B5" />
+    <SolidColorBrush x:Key="Brush.Accent.Soft" Color="#2E0E34" />
 
     <LinearGradientBrush x:Key="Brush.Accent.Gradient" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#FF4DA6" Offset="0" />
-        <GradientStop Color="#B8156B" Offset="1" />
+        <GradientStop Color="#D900A8" Offset="0" />
+        <GradientStop Color="#8B17C0" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- ================ PRATA METÁLICO (SKY TECH logo) ================ -->
+
+    <LinearGradientBrush x:Key="Brush.Metallic" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#66686A" Offset="0" />
+        <GradientStop Color="#AEB0B2" Offset="0.55" />
+        <GradientStop Color="#D0D2D3" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Brush.Hero" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#FF8CC6" Offset="0" />
-        <GradientStop Color="#FFB3D9" Offset="1" />
+        <GradientStop Color="#AEB0B2" Offset="0" />
+        <GradientStop Color="#D0D2D3" Offset="1" />
     </LinearGradientBrush>
 
     <!-- ================ ESTADOS ================ -->
@@ -66,8 +74,8 @@
     <SolidColorBrush x:Key="Brush.Danger.Soft" Color="#331A18" />
     <SolidColorBrush x:Key="Brush.Danger.Text" Color="#FDA4A4" />
 
-    <SolidColorBrush x:Key="Brush.Info" Color="#FF8CC6" />
-    <SolidColorBrush x:Key="Brush.Info.Soft" Color="#3D1430" />
-    <SolidColorBrush x:Key="Brush.Info.Text" Color="#FFC4E0" />
+    <SolidColorBrush x:Key="Brush.Info" Color="#D900A8" />
+    <SolidColorBrush x:Key="Brush.Info.Soft" Color="#2E0E34" />
+    <SolidColorBrush x:Key="Brush.Info.Text" Color="#E52CC2" />
 
 </ResourceDictionary>
