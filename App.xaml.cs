@@ -17,7 +17,6 @@ namespace SkyLand
         {
             base.OnStartup(e);
 
-            ApplyTheme(SettingsStore.Current.Theme);
             AppPaths.EnsureFolders();
 
             if (e.Args != null && e.Args.Contains("--selftest"))
@@ -198,26 +197,6 @@ namespace SkyLand
         }
 
         internal static MainWindow MainWindowRef { get; set; }
-
-        public static void ApplyTheme(string themeName)
-        {
-            var file = "Theme." + themeName + ".xaml";
-            var dict = new ResourceDictionary
-            {
-                Source = new Uri("pack://application:,,,/Themes/" + file, UriKind.RelativeOrAbsolute)
-            };
-            var app = Current;
-            if (app == null) return;
-
-            // Remove todos os dicionários de tema já mesclados (evita acúmulo/duplicatas).
-            for (int i = app.Resources.MergedDictionaries.Count - 1; i >= 0; i--)
-            {
-                var src = app.Resources.MergedDictionaries[i].Source?.OriginalString;
-                if (src != null && src.Contains("/Themes/"))
-                    app.Resources.MergedDictionaries.RemoveAt(i);
-            }
-            app.Resources.MergedDictionaries.Insert(0, dict);
-        }
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
