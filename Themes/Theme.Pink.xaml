@@ -62,9 +62,9 @@
 
     <!-- ================ ESTADOS ================ -->
 
-    <SolidColorBrush x:Key="Brush.Success" Color="#34D399" />
-    <SolidColorBrush x:Key="Brush.Success.Soft" Color="#14332A" />
-    <SolidColorBrush x:Key="Brush.Success.Text" Color="#A7F3D0" />
+    <SolidColorBrush x:Key="Brush.Success" Color="#E52CC2" />
+    <SolidColorBrush x:Key="Brush.Success.Soft" Color="#2E0E34" />
+    <SolidColorBrush x:Key="Brush.Success.Text" Color="#E52CC2" />
 
     <SolidColorBrush x:Key="Brush.Warning" Color="#FBBF24" />
     <SolidColorBrush x:Key="Brush.Warning.Soft" Color="#33290F" />
