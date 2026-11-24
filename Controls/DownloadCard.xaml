@@ -62,11 +62,9 @@
             </Border>
 
             <!-- Estado ocioso -->
-            <StackPanel Orientation="Horizontal" Margin="0,14,0,0"
-                        Visibility="{Binding IsIdle, Converter={StaticResource B2V}}">
-                <Ellipse Width="6" Height="6" Fill="{DynamicResource Brush.Success}" VerticalAlignment="Center" />
-                <TextBlock Style="{StaticResource T.Small}" Text="Pronto para iniciar" Margin="8,0,0,0" />
-            </StackPanel>
+            <TextBlock Style="{StaticResource T.Small}" Text="Pronto para iniciar"
+                       Margin="0,14,0,0"
+                       Visibility="{Binding IsIdle, Converter={StaticResource B2V}}" />
 
             <!-- Painel de execução -->
             <StackPanel Margin="0,14,0,0"
