@@ -205,11 +205,11 @@ namespace SkyLand.Pages
                     Name = name,
                     Detail = "Versão encontrada: " + (string.IsNullOrEmpty(st.Version) ? "—" : st.Version) + date,
                     Compat = "Roblox: versão atual",
-                    CompatBrush = TryBrush("Brush.Success") ?? System.Windows.Media.Brushes.Green,
+                    CompatBrush = TryBrush("Brush.Success") ?? System.Windows.Media.Brushes.DeepPink,
                     State = "Online",
-                    Dot = TryBrush("Brush.Success") ?? System.Windows.Media.Brushes.Green,
+                    Dot = TryBrush("Brush.Success") ?? System.Windows.Media.Brushes.DeepPink,
                     ChipBackground = TryBrush("Brush.Success.Soft") ?? System.Windows.Media.Brushes.Transparent,
-                    ChipForeground = TryBrush("Brush.Success.Text") ?? System.Windows.Media.Brushes.Green
+                    ChipForeground = TryBrush("Brush.Success.Text") ?? System.Windows.Media.Brushes.DeepPink
                 };
             }
 
