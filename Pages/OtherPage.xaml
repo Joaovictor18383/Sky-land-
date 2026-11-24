@@ -63,12 +63,8 @@
                                     BorderBrush="{DynamicResource Brush.Stroke.Subtle}" BorderThickness="1">
                                 <StackPanel>
                                     <TextBlock Text="STATUS" Style="{StaticResource T.Eyebrow}" />
-                                    <Border x:Name="RbStatusChip" CornerRadius="999" Padding="10,3"
-                                            Background="{DynamicResource Brush.Warning.Soft}" Margin="0,6,0,0"
-                                            HorizontalAlignment="Left">
-                                        <TextBlock x:Name="RbStatus" Text="Verificando…" FontSize="11" FontWeight="SemiBold"
-                                                   Foreground="{DynamicResource Brush.Warning.Text}" />
-                                    </Border>
+                                    <TextBlock x:Name="RbStatus" Text="Verificando…" FontSize="13" FontWeight="Medium"
+                                               Foreground="{DynamicResource Brush.Text.Primary}" Margin="0,7,0,0" />
                                 </StackPanel>
                             </Border>
                             <Border Grid.Column="3" CornerRadius="10" Padding="14,12"
@@ -181,10 +177,6 @@
                                                        Visibility="{Binding Name, Converter={StaticResource ArtVis}}"
                                                        VerticalAlignment="Center" Stretch="Uniform"
                                                        RenderOptions.BitmapScalingMode="HighQuality" />
-                                                <Ellipse Width="14" Height="14"
-                                                         Fill="{Binding Dot}"
-                                                         VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                         Visibility="{Binding Name, Converter={StaticResource ArtInv}}" />
                                             </Grid>
                                             <StackPanel Grid.Column="1" Margin="16,0,16,0" VerticalAlignment="Center">
                                                 <TextBlock FontSize="15" FontWeight="SemiBold"
@@ -195,16 +187,12 @@
                                                            Text="{Binding Detail}" />
                                                 <TextBlock FontSize="11" FontWeight="Medium"
                                                            Margin="0,3,0,0"
-                                                           Foreground="{Binding CompatBrush}"
+                                                           Foreground="{DynamicResource Brush.Text.Secondary}"
                                                            Text="{Binding Compat}" />
                                             </StackPanel>
-                                            <Border Grid.Column="2" CornerRadius="999"
-                                                    Background="{Binding ChipBackground}"
-                                                    Padding="16,8" VerticalAlignment="Center">
-                                                <TextBlock FontSize="12" FontWeight="SemiBold"
-                                                           Foreground="{Binding ChipForeground}"
-                                                           Text="{Binding State}" />
-                                            </Border>
+                                            <TextBlock Grid.Column="2" FontSize="12" FontWeight="SemiBold"
+                                                       Foreground="{DynamicResource Brush.Text.Secondary}"
+                                                       Text="{Binding State}" VerticalAlignment="Center" />
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
