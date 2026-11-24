@@ -62,7 +62,7 @@ namespace SkyLand.Pages
             {
                 RbVersion.Text = "—";
                 RbDate.Text = "—";
-                SetStatusChip("Indisponível", "Brush.Text.Dim", "Brush.Surface", "Brush.Text.Secondary");
+                RbStatus.Text = "Indisponível";
                 RbLastUpdate.Text = "Falha na consulta";
                 RbNote.Text = "Não foi possível consultar as versões: " + UiHelper.FriendlyError(ex);
             }
@@ -75,17 +75,10 @@ namespace SkyLand.Pages
 
             RbVersion.Text = string.IsNullOrEmpty(cur.DisplayVersion) ? cur.Version : cur.DisplayVersion;
             RbDate.Text = string.IsNullOrEmpty(cur.DateText) ? "Data não informada" : cur.DateText;
-            SetStatusChip("Versão atual", "Brush.Success", "Brush.Success.Soft", "Brush.Success.Text");
+            RbStatus.Text = "Versão atual";
             RbLastUpdate.Text = RobloxVersionService.Loaded.ToString("dd/MM/yyyy HH:mm");
             RbNote.Text = "Fonte: rdd.weao.gg — versão oficial do cliente Roblox para Windows.";
             VersionList.ItemsSource = RobloxVersionService.Versions;
-        }
-
-        private void SetStatusChip(string text, string dotKey, string bgKey, string fgKey)
-        {
-            RbStatus.Text = text;
-            RbStatusChip.Background = TryBrush(bgKey) ?? System.Windows.Media.Brushes.Transparent;
-            RbStatus.Foreground = TryBrush(fgKey) ?? System.Windows.Media.Brushes.Gray;
         }
 
         private async void OnRefreshVersionsClick(object sender, RoutedEventArgs e)
