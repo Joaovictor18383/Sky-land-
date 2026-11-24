@@ -93,9 +93,12 @@ namespace SkyLand
         private static string FormatDate(string raw)
         {
             if (string.IsNullOrWhiteSpace(raw)) return "";
-            if (DateTime.TryParse(raw, System.Globalization.CultureInfo.InvariantCulture,
-                    System.Globalization.DateTimeStyles.AssumeUniversal | System.Globalization.DateTimeStyles.AdjustToUniversal, out var dt))
-                return dt.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
+            // Formato da API: "11/17/2026, 5:00:15 PM UTC" → exibir "17/11/2026"
+            var datePart = raw.Split(',')[0].Trim();
+            var parts = datePart.Split('/');
+            if (parts.Length == 3 &&
+                int.TryParse(parts[0], out var m) && int.TryParse(parts[1], out var d) && int.TryParse(parts[2], out var y))
+                return $"{d:00}/{m:00}/{y:0000}";
             return raw;
         }
 
