@@ -10,6 +10,8 @@ namespace SkyLand.Pages
     {
         public string Name { get; set; }
         public string Detail { get; set; }
+        public string Compat { get; set; }
+        public Brush CompatBrush { get; set; }
         public string State { get; set; }
         public Brush Dot { get; set; }
         public Brush ChipBackground { get; set; }
@@ -28,6 +30,7 @@ namespace SkyLand.Pages
             _host = host ?? throw new ArgumentNullException(nameof(host));
 
             StatusList.ItemsSource = _rows;
+            VersionList.ItemsSource = RobloxVersionService.Versions;
 
             // Estado inicial
             if (StatusCache.IsFresh) ApplyRows();
@@ -38,8 +41,73 @@ namespace SkyLand.Pages
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
+            var tasks = new List<Task>();
             if (!StatusCache.IsFresh)
-                await CheckAsync(force: false);
+                tasks.Add(CheckAsync(force: false));
+            tasks.Add(RefreshVersionsAsync(force: false));
+            await Task.WhenAll(tasks);
+        }
+
+        // ==================== VERSÃO DO ROBLOX ====================
+
+        private async Task RefreshVersionsAsync(bool force)
+        {
+            try
+            {
+                if (force || !RobloxVersionService.IsFresh)
+                    await RobloxVersionService.RefreshAsync();
+                ApplyVersions();
+            }
+            catch (Exception ex)
+            {
+                RbVersion.Text = "—";
+                RbDate.Text = "—";
+                SetStatusChip("Indisponível", "Brush.Text.Dim", "Brush.Surface", "Brush.Text.Secondary");
+                RbLastUpdate.Text = "Falha na consulta";
+                RbNote.Text = "Não foi possível consultar as versões: " + UiHelper.FriendlyError(ex);
+            }
+        }
+
+        private void ApplyVersions()
+        {
+            var cur = RobloxVersionService.Current;
+            if (cur == null) return;
+
+            RbVersion.Text = string.IsNullOrEmpty(cur.DisplayVersion) ? cur.Version : cur.DisplayVersion;
+            RbDate.Text = string.IsNullOrEmpty(cur.DateText) ? "Data não informada" : cur.DateText;
+            SetStatusChip("Versão atual", "Brush.Success", "Brush.Success.Soft", "Brush.Success.Text");
+            RbLastUpdate.Text = RobloxVersionService.Loaded.ToString("dd/MM/yyyy HH:mm");
+            RbNote.Text = "Fonte: rdd.weao.gg — versão oficial do cliente Roblox para Windows.";
+            VersionList.ItemsSource = RobloxVersionService.Versions;
+        }
+
+        private void SetStatusChip(string text, string dotKey, string bgKey, string fgKey)
+        {
+            RbStatus.Text = text;
+            RbStatusChip.Background = TryBrush(bgKey) ?? System.Windows.Media.Brushes.Transparent;
+            RbStatus.Foreground = TryBrush(fgKey) ?? System.Windows.Media.Brushes.Gray;
+        }
+
+        private async void OnRefreshVersionsClick(object sender, RoutedEventArgs e)
+        {
+            BtnRefreshVersions.IsEnabled = false;
+            try
+            {
+                await RefreshVersionsAsync(force: true);
+                await CheckAsync(force: true);
+            }
+            finally { BtnRefreshVersions.IsEnabled = true; }
+        }
+
+        private void OnOtherVersionsClick(object sender, RoutedEventArgs e)
+        {
+            VersionsPopup.IsOpen = !VersionsPopup.IsOpen;
+        }
+
+        private void OnVersionDownloadClick(object sender, RoutedEventArgs e)
+        {
+            VersionsPopup.IsOpen = false;
+            ProcessRunner.OpenUrl(RobloxVersionService.SiteUrl);
         }
 
         private async Task CheckAsync(bool force = false)
@@ -136,6 +204,8 @@ namespace SkyLand.Pages
                 {
                     Name = name,
                     Detail = "Versão encontrada: " + (string.IsNullOrEmpty(st.Version) ? "—" : st.Version) + date,
+                    Compat = "Roblox: versão atual",
+                    CompatBrush = TryBrush("Brush.Success") ?? System.Windows.Media.Brushes.Green,
                     State = "Online",
                     Dot = TryBrush("Brush.Success") ?? System.Windows.Media.Brushes.Green,
                     ChipBackground = TryBrush("Brush.Success.Soft") ?? System.Windows.Media.Brushes.Transparent,
@@ -147,6 +217,8 @@ namespace SkyLand.Pages
             {
                 Name = name,
                 Detail = "Versão encontrada: " + (string.IsNullOrEmpty(st.Version) ? "—" : st.Version) + date,
+                Compat = "Roblox: versão anterior — ainda não atualizado",
+                CompatBrush = TryBrush("Brush.Warning") ?? System.Windows.Media.Brushes.Orange,
                 State = "Desatualizado",
                 Dot = TryBrush("Brush.Warning") ?? System.Windows.Media.Brushes.Orange,
                 ChipBackground = TryBrush("Brush.Warning.Soft") ?? System.Windows.Media.Brushes.Transparent,
@@ -179,7 +251,7 @@ namespace SkyLand.Pages
 
         private void OnOpenWeaoClick(object sender, RoutedEventArgs e)
         {
-            ProcessRunner.OpenUrl("https://weao.xyz/status");
+            ProcessRunner.OpenUrl(RobloxVersionService.WeaoUrl);
         }
 
         private async void OnAnyDeskClick(object sender, RoutedEventArgs e)
