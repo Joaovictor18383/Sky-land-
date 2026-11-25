@@ -28,7 +28,7 @@
                             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
                                 <Button x:Name="BtnRefreshVersions" Style="{StaticResource BtnGhost}"
                                         Content="Atualizar" Click="OnRefreshVersionsClick" Margin="0,0,10,0" />
-                                <Button x:Name="BtnOtherVersions" Style="{StaticResource BtnPrimary}"
+                                <Button x:Name="BtnOtherVersions" Style="{StaticResource BtnGhost}"
                                         Content="Outras versões" Click="OnOtherVersionsClick" />
                             </StackPanel>
                         </Grid>
@@ -149,7 +149,7 @@
                                            Style="{StaticResource T.CardSubtitle}" Margin="0,6,0,0" />
                             </StackPanel>
                             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                                <Button x:Name="BtnCheck" Style="{StaticResource BtnPrimary}"
+                                <Button x:Name="BtnCheck" Style="{StaticResource BtnGhost}"
                                         Content="Verificar agora" Click="OnCheckClick"
                                         Margin="0,0,12,0" />
                                 <Button Style="{StaticResource BtnGhost}" Content="Abrir WEAO"
