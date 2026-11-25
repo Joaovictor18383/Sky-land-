@@ -205,24 +205,8 @@ namespace SkyLand
         // ---------- Pacote completo do Madium ----------
         public static async Task InstallMadDependenciesAsync(OpVM vm, IShell shell, CancellationToken ct)
         {
-            var ok = await shell.ConfirmAsync(
-                "Dependências do Madium",
-                "Este processo instala, quando necessário:\n\n" +
-                "  1. .NET Desktop Runtime 8  (Microsoft)\n" +
-                "  2. Visual C++ x64  (Microsoft)\n" +
-                "  3. Visual C++ x86  (Microsoft)\n" +
-                "  4. WebView2  (Microsoft)\n\n" +
-                "Instaladores oficiais da Microsoft, silenciosos. O Windows pode pedir permissão.\n\n" +
-                "Deseja começar?",
-                "Iniciar", "Mais tarde", false);
-
-            if (!ok)
-            {
-                vm.SetNeutralResult("Instalação de dependências cancelada.");
-                return;
-            }
-
-            // O consentimento único acima já cobre as 4 dependências — aqui só verificamos
+            // A confirmação já foi feita na página MadiumPage — aqui executamos direto
+            // O consentimento único já cobre as 4 dependências — aqui só verificamos
             // e instalamos as que faltam, sem abrir outro diálogo por item.
             var steps = new (string name, Func<bool> isInstalled, Func<CancellationToken, Task<bool>> run)[]
             {
