@@ -230,6 +230,8 @@ namespace SkyLand
                         info.Release = latestRelease;
                         info.Notes = UiHelper.TrimText(latestRelease.Body, 400);
                         info.HasUpdate = CompareVersion(info.LatestVersion, info.CurrentVersion) > 0;
+                        // Marca como sem asset para informar ao usuário
+                        info.Asset = null;
                     }
                     else
                     {
