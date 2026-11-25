@@ -35,10 +35,7 @@
                                    Foreground="{DynamicResource Brush.Text.Primary}" />
                         <TextBlock Text="Escolha uma ferramenta para começar" Style="{StaticResource T.CardSubtitle}" Margin="0,4,0,0" />
                     </StackPanel>
-                    <Border Grid.Column="1" Style="{StaticResource Chip}" VerticalAlignment="Center"
-                            Background="{DynamicResource Brush.Surface}">
-                        <TextBlock Text="6 ATALHOS" Style="{StaticResource T.Eyebrow}" />
-                    </Border>
+                    <TextBlock Grid.Column="1" Text="6 ATALHOS" Style="{StaticResource T.Eyebrow}" VerticalAlignment="Center" />
                 </Grid>
 
                 <UniformGrid Columns="3" HorizontalAlignment="Stretch">
