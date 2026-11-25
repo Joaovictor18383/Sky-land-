@@ -16,17 +16,8 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel VerticalAlignment="Center" MaxWidth="580">
-                            <TextBlock FontSize="28" FontWeight="SemiBold" TextWrapping="Wrap"
-                                       Foreground="{DynamicResource Brush.Text.Primary}">
-                                <Run Text="Tudo o que você precisa." />
-                                <LineBreak />
-                                <Run Text="Em um só lugar." Foreground="{DynamicResource Brush.Metallic}" />
-                            </TextBlock>
-                            <TextBlock Style="{StaticResource T.PageSubtitle}" MaxWidth="480"
-                                       HorizontalAlignment="Left" Margin="0,8,0,0"
-                                       Text="Baixe executores, instale dependências e gerencie suas ferramentas." />
                         </StackPanel>
-                        <Image Grid.Column="1" Width="96" Height="96"
+                        <Image Grid.Column="1" Width="180" Height="96"
                                Source="pack://application:,,,/Assets/logo.png"
                                Stretch="Uniform"
                                RenderOptions.BitmapScalingMode="HighQuality"
