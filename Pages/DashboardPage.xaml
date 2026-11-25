@@ -7,8 +7,7 @@
             <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,26,32,32">
 
                 <Border CornerRadius="16" Padding="0"
-                        BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
-                        BorderThickness="1" Margin="0,0,0,20">
+                        BorderThickness="0" Margin="0,0,0,20">
                     <Grid>
                         <Image Source="pack://application:,,,/Assets/logo-horizontal.png"
                                Stretch="UniformToFill"
