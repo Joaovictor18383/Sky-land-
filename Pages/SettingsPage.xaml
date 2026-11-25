@@ -33,33 +33,6 @@
                     </StackPanel>
                 </Border>
 
-                <!-- ===== INTEGRAÇÃO DE IA (AGENTROUTER) ===== -->
-                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
-                    <StackPanel>
-                        <TextBlock Text="IA · AgentRouter" Style="{StaticResource T.CardTitle}" />
-                        <TextBlock Style="{StaticResource T.CardSubtitle}"
-                                   Text="API key usada pelas integrações de IA (https://agentrouter.org/v1). A chave fica salva apenas neste computador, em %APPDATA%\SKY LAND\settings.json."
-                                   Margin="0,3,0,12" />
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBox x:Name="AgentKeyBox" Style="{StaticResource InputBox}"
-                                     VerticalContentAlignment="Center"
-                                     TextChanged="OnAgentKeyChanged" />
-                            <Button x:Name="BtnAgentKeySave" Grid.Column="1" Style="{StaticResource BtnPrimary}"
-                                    Content="Salvar chave" Click="OnAgentKeySaveClick" Margin="12,0,0,0" />
-                            <Button x:Name="BtnAgentKeyTest" Grid.Column="2" Style="{StaticResource BtnGhost}"
-                                    Content="Testar conexão" Click="OnAgentKeyTestClick" Margin="10,0,0,0" />
-                        </Grid>
-                        <TextBlock x:Name="AgentStatus" Style="{StaticResource T.Small}"
-                                   Text="Nenhuma chave salva."
-                                   Margin="0,8,0,0" />
-                    </StackPanel>
-                </Border>
-
                 <!-- ===== ATUALIZAÇÕES DO SKY LAND ===== -->
                 <Border Style="{StaticResource Card}" Margin="0,0,0,14">
                     <StackPanel>
