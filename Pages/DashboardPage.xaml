@@ -17,8 +17,8 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel VerticalAlignment="Center" MaxWidth="580">
                         </StackPanel>
-                        <Image Grid.Column="1" Width="180" Height="96"
-                               Source="pack://application:,,,/Assets/logo.png"
+                        <Image Grid.Column="1" Width="280" Height="96"
+                               Source="pack://application:,,,/Assets/logo-horizontal.png"
                                Stretch="Uniform"
                                RenderOptions.BitmapScalingMode="HighQuality"
                                Margin="24,0,0,0" VerticalAlignment="Center" />
