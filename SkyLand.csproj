@@ -29,6 +29,7 @@
   <ItemGroup>
     <Resource Include="Assets\app.ico" />
     <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\logo-horizontal.png" />
     <Resource Include="Assets\emblem.png" />
     <Resource Include="Assets\potassium.png" />
     <Resource Include="Assets\madium.png" />
