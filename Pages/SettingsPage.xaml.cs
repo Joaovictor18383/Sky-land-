@@ -269,68 +269,6 @@ namespace SkyLand.Pages
             UpdateBanner.Visibility = string.IsNullOrWhiteSpace(text) ? Visibility.Collapsed : Visibility.Visible;
         }
 
-        // ==================== MANUTENÇÃO ====================
-
-        private async void OnClearTempClick(object sender, RoutedEventArgs e)
-        {
-            var items = new List<string>();
-            try
-            {
-                if (Directory.Exists(AppPaths.Updates))
-                    foreach (var f in Directory.EnumerateFiles(AppPaths.Updates, "*", SearchOption.AllDirectories))
-                        items.Add(f);
-                if (Directory.Exists(AppPaths.Temp))
-                    foreach (var f in Directory.EnumerateFiles(AppPaths.Temp, "*", SearchOption.AllDirectories))
-                        items.Add(f);
-            }
-            catch { }
-
-            if (items.Count == 0)
-            {
-                _host.Toast("Limpo", "Nenhum arquivo temporário para remover.", ToastKind.Info);
-                return;
-            }
-
-            var preview = items.Take(10).ToList();
-            if (items.Count > 10) preview.Add("… e mais " + (items.Count - 10) + " arquivo(s)");
-
-            var ok = await _host.ConfirmItemsAsync(
-                "Limpar arquivos temporários do aplicativo",
-                "Estes arquivos serão removidos (atualizações antigas e instaladores temporários):",
-                preview, "Limpar agora", "Cancelar", true);
-
-            if (!ok) return;
-
-            int removed = 0, failed = 0;
-            try
-            {
-                if (Directory.Exists(AppPaths.Updates)) Directory.Delete(AppPaths.Updates, true);
-                if (Directory.Exists(AppPaths.Temp)) Directory.Delete(AppPaths.Temp, true);
-                removed = items.Count;
-            }
-            catch
-            {
-                failed = items.Count - removed;
-            }
-
-            _downloadedUpdatePath = null;
-            ActivityService.Add(ActivityKind.Info,
-                "Limpeza de temporários concluída (" + removed + " arquivo(s)" + (failed > 0 ? ", " + failed + " protegidos" : "") + ").");
-            _host.Toast("Limpeza concluída",
-                removed + " arquivo(s) temporário(s) foram removidos.", ToastKind.Success);
-        }
-
-        private void OnGitHubClick(object sender, RoutedEventArgs e)
-        {
-            ProcessRunner.OpenUrl("https://github.com/Joaovictor18383/Sky-land-");
-        }
-
-        private void OnClearActivityClick(object sender, RoutedEventArgs e)
-        {
-            ActivityService.Clear();
-            _host.Toast("Registro limpo", "As atividades recentes foram apagadas.", ToastKind.Info);
-        }
-
         // ==================== AUXILIARES ====================
 
         private Brush TryBrush(string key)
