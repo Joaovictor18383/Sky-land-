@@ -6,22 +6,13 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel MaxWidth="1200" HorizontalAlignment="Center" Margin="32,26,32,32">
 
-                <Border CornerRadius="16" Padding="24,20"
-                        Background="{DynamicResource Brush.Surface}"
+                <Border CornerRadius="16" Padding="0"
                         BorderBrush="{DynamicResource Brush.Stroke.Subtle}"
                         BorderThickness="1" Margin="0,0,0,20">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel VerticalAlignment="Center" MaxWidth="580">
-                        </StackPanel>
-                        <Image Grid.Column="1" Width="280" Height="96"
-                               Source="pack://application:,,,/Assets/logo-horizontal.png"
-                               Stretch="Uniform"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                               Margin="24,0,0,0" VerticalAlignment="Center" />
+                        <Image Source="pack://application:,,,/Assets/logo-horizontal.png"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
                     </Grid>
                 </Border>
 
