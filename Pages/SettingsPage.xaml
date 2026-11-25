@@ -66,7 +66,7 @@
                                 <TextBlock x:Name="VersionText" Style="{StaticResource T.CardSubtitle}"
                                            Margin="0,3,0,0" />
                             </StackPanel>
-                            <Button x:Name="BtnCheckUpdates" Grid.Column="1" Style="{StaticResource BtnPrimary}"
+                            <Button x:Name="BtnCheckUpdates" Grid.Column="1" Style="{StaticResource BtnGhost}"
                                     Content="Verificar agora" Click="OnCheckUpdatesClick" VerticalAlignment="Center" />
                         </Grid>
 
