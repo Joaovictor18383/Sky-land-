@@ -38,7 +38,7 @@ namespace SkyLand
 
         static GitHubService()
         {
-            Http.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) SKY-LAND/1.0");
+            Http.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
             Http.DefaultRequestHeaders.Accept.ParseAdd("application/vnd.github+json");
         }
 
@@ -48,7 +48,10 @@ namespace SkyLand
             var url = "https://api.github.com/repos/" + repo + "/releases?per_page=30";
             using var resp = await Http.GetAsync(url, ct).ConfigureAwait(false);
             if (!resp.IsSuccessStatusCode)
-                throw new SkyHttpException((int)resp.StatusCode, "HTTP " + (int)resp.StatusCode);
+            {
+                // Fallback: tenta usar a página HTML se a API falhar
+                return await ListReleasesFromHtmlAsync(repo, ct);
+            }
 
             var json = await resp.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
@@ -77,6 +80,45 @@ namespace SkyLand
                     });
                 }
                 list.Add(release);
+            }
+            return list;
+        }
+
+        /// <summary>Fallback: busca releases da página HTML quando a API falhar (evita 403).</summary>
+        private static async Task<List<GhRelease>> ListReleasesFromHtmlAsync(string repo, CancellationToken ct)
+        {
+            var url = "https://github.com/" + repo + "/releases";
+            using var resp = await Http.GetAsync(url, ct).ConfigureAwait(false);
+            if (!resp.IsSuccessStatusCode)
+                throw new SkyHttpException((int)resp.StatusCode, "HTTP " + (int)resp.StatusCode + " (API e HTML falharam)");
+
+            var html = await resp.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
+            var list = new List<GhRelease>();
+
+            // Extrai informações básicas do HTML (tag, nome, data)
+            var rxRelease = new Regex(@"<h2[^>]*data-test-selector=""tag-title"">\s*<a[^>]*>([^<]+)</a>\s*</h2>", RegexOptions.IgnoreCase);
+            var rxDate = new Regex(@"relative-time[^>]*datetime=""([^""]+)""", RegexOptions.IgnoreCase);
+            var rxAsset = new Regex(@"<a[^>]*href=""([^""]+)"">\s*<span[^>]*>([^<]+)</span>\s*</a>", RegexOptions.IgnoreCase);
+
+            var releaseTags = rxRelease.Matches(html);
+            var dates = rxDate.Matches(html);
+
+            for (int i = 0; i < releaseTags.Count && i < 10; i++)
+            {
+                var tag = releaseTags[i].Groups[1].Value.Trim();
+                var dateStr = dates.Count > i ? dates[i].Groups[1].Value : "";
+                if (DateTime.TryParse(dateStr, out var date))
+                {
+                    list.Add(new GhRelease
+                    {
+                        Tag = tag,
+                        Name = tag,
+                        Prerelease = tag.Contains("-", StringComparison.OrdinalIgnoreCase),
+                        UrlHtml = url,
+                        PublishedUtc = date.ToUniversalTime(),
+                        Assets = new List<GhAsset>() // assets não extraíveis do HTML sem parse complexo
+                    });
+                }
             }
             return list;
         }
