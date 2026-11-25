@@ -120,27 +120,6 @@
                     </StackPanel>
                 </Border>
 
-                <!-- ===== MANUTENÇÃO ===== -->
-                <Border Style="{StaticResource Card}">
-                    <StackPanel>
-                        <TextBlock Text="Manutenção" Style="{StaticResource T.CardTitle}" />
-                        <TextBlock Style="{StaticResource T.CardSubtitle}"
-                                   Text="Limpa atualizações baixadas e instaladores temporários usados por este aplicativo."
-                                   Margin="0,3,0,12" />
-                        <StackPanel Orientation="Horizontal">
-                            <Button x:Name="BtnClearTemp" Style="{StaticResource BtnGhost}"
-                                    Content="Limpar arquivos temporários"
-                                    Click="OnClearTempClick" Margin="0,0,10,0" />
-                            <Button x:Name="BtnGitHub" Style="{StaticResource BtnGhost}"
-                                    Content="Abrir GitHub oficial"
-                                    Click="OnGitHubClick" Margin="0,0,10,0" />
-                            <Button x:Name="BtnClearActivity" Style="{StaticResource BtnGhost}"
-                                    Content="Limpar registro de atividades"
-                                    Click="OnClearActivityClick" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
             </StackPanel>
         </ScrollViewer>
     </Grid>
