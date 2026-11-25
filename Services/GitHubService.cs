@@ -39,7 +39,6 @@ namespace SkyLand
         static GitHubService()
         {
             Http.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
-            Http.DefaultRequestHeaders.Accept.ParseAdd("application/vnd.github+json");
         }
 
         public static async Task<List<GhRelease>> ListReleasesAsync(
