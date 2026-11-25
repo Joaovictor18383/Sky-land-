@@ -38,7 +38,7 @@ namespace SkyLand
 
         static GitHubService()
         {
-            Http.DefaultRequestHeaders.UserAgent.ParseAdd("SKY-LAND");
+            Http.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) SKY-LAND/1.0");
             Http.DefaultRequestHeaders.Accept.ParseAdd("application/vnd.github+json");
         }
 
